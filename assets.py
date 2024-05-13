@@ -1,6 +1,7 @@
 import pygame
 import os
 from config import MOTO_WIDTH, MOTO_HEIGHT, CARRO_WIDTH, CARRO_HEIGHT, IMG_DIR, SND_DIR
+from assets import *
 
 
 BACKGROUND = 'background'

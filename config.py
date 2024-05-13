@@ -8,7 +8,7 @@ SND_DIR = path.join(path.dirname(__file__), 'assets', 'snd')
 MOTO_WIDTH = 50
 MOTO_HEIGHT = 60
 CARRO_WIDTH = 80
-CARRO_HEIGHT = 120
+CARRO_HEIGHT = 120  #Tamanhos aleatorios ate o momento
 
 #Dados gerais
 WIDTH = 1280
