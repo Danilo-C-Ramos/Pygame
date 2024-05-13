@@ -3,12 +3,13 @@
 import pygame
 from config import *
 from game_loop import *
+from assets import *
 
 pygame.init()
 pygame.mixer.init()
 
-WIDTH = 500
-HEIGHT = 500
+WIDTH = 920
+HEIGHT = 920
 # ----- Gera tela principal
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -23,8 +24,9 @@ while game:
         if event.type == pygame.QUIT:
             game = False
     
-    #screen.fill("purple")
-    window.fill((255, 0, 0))
+    assets = load_assets()
+    window.fill(BLACK)  # Preenche com a cor branca
+    window.blit(assets[BACKGROUND], (0, 0))
 
     pygame.display.update()
 
