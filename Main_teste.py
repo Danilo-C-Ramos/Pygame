@@ -8,13 +8,8 @@ from assets import *
 pygame.init()
 pygame.mixer.init()
 
-<<<<<<< Updated upstream
 WIDTH = 920
 HEIGHT = 920
-=======
-WIDTH = 900
-HEIGHT = 900
->>>>>>> Stashed changes
 # ----- Gera tela principal
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Motinha')
@@ -23,9 +18,14 @@ game = True
 
 clock = pygame.time.Clock()
 
-assets = load_assets
+assets = load_assets()
 
-player = Moto(assets[MOTO])
+all_sprites = pygame.sprite.Group()
+groups = {}
+groups['all_sprites'] = all_sprites
+
+player = Moto(assets)
+all_sprites.add(player)
 
 # ======== Loop Principal ========
 while game:
@@ -33,16 +33,12 @@ while game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
-<<<<<<< Updated upstream
     
-    assets = load_assets()
+    player.update()
+
     window.fill(BLACK)  # Preenche com a cor branca
     window.blit(assets[BACKGROUND], (0, 0))
-=======
-        
-
-    window.fill((255, 0, 0))
->>>>>>> Stashed changes
+    all_sprites.draw(window)
 
     pygame.display.update()
 
