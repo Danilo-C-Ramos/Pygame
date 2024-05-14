@@ -28,3 +28,7 @@ INIT = 0
 GAME = 1
 FIM = 2
 QUIT = 3
+
+#Escolhas de posição para o cachorro passar
+APARECE_INICIO = (0, 0)
+APARECE_FINAL = (920, 0)
