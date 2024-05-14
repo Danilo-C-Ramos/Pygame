@@ -33,7 +33,30 @@ while game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
-    
+        # Verifica se apertou alguma tecla.
+        if event.type == pygame.KEYDOWN:
+            # Dependendo da tecla, altera a velocidade.
+            if event.key == pygame.K_LEFT:
+                player.speedx -= 5
+            if event.key == pygame.K_RIGHT:
+                player.speedx += 5
+            if event.key == pygame.K_UP:
+                player.speedy -= 5
+            if event.key == pygame.K_DOWN:
+                player.speedy += 5
+        # Verifica se soltou alguma tecla.
+        if event.type == pygame.KEYUP:
+            # Dependendo da tecla, altera a velocidade.
+            if event.key == pygame.K_LEFT:
+                player.speedx += 5
+            if event.key == pygame.K_RIGHT:
+                player.speedx -= 5
+            if event.key == pygame.K_UP:
+                player.speedy += 5
+            if event.key == pygame.K_DOWN:
+                player.speedy -= 5
+
+
     player.update()
 
     window.fill(BLACK)  # Preenche com a cor branca
