@@ -27,7 +27,11 @@ groups['paredes'] = paredes
 player = Moto(assets)
 all_sprites.add(player)
 
-state = RETA
+states = [RETA, RETA_D, RETA_E]
+
+tempo = 0
+state_i = 0
+state = states[state_i]
 # ======== Loop Principal ========
 while state != FIM:
     clock.tick(FPS)
@@ -59,13 +63,21 @@ while state != FIM:
 
 
 
-    
+    if tempo % 100 == 0:
+        paredes.empty()
+        state_i = (state_i + 1) % len(states)
+        state = states[state_i]
+        g = Grama(assets, state)
+        paredes.add(g)
+        tempo = 0
 
+    tempo += 1
     player.update()
 
-    g = Grama(assets, state)
     
-    paredes.add(g)
+    for parede in pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_mask):
+        player.speedx = 0
+        break
     #all_sprites.add(g)
 
     #window.fill(BLACK)  # Preenche com a cor preta
