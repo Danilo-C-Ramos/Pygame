@@ -8,8 +8,8 @@ from assets import *
 pygame.init()
 pygame.mixer.init()
 
-WIDTH = 920
-HEIGHT = 920
+WIDTH = 720
+HEIGHT = 720
 # ----- Gera tela principal
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Motinha')
@@ -34,7 +34,7 @@ while state != FIM:
   
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            game = False
+            state = FIM
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 player.speedx -= 5
