@@ -24,11 +24,15 @@ groups = {}
 groups['all_sprites'] = all_sprites
 groups['paredes'] = paredes
 
+keys_down = {}
+
 player = Moto(assets)
 all_sprites.add(player)
 
 state = RETA
-states = [RETA, RETA_D, RETA_E, DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
+g = Grama(assets, state)
+paredes.add(g)
+states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
 
 tempo = 0
 
@@ -40,6 +44,7 @@ while state != FIM:
         if event.type == pygame.QUIT:
             state = FIM
         if event.type == pygame.KEYDOWN:
+            keys_down[event.key] = True
             if event.key == pygame.K_a:
                 player.speedx -= 5
             if event.key == pygame.K_d:
@@ -49,30 +54,50 @@ while state != FIM:
             if event.key == pygame.K_s:
                 player.speedy += 5
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_a:
-                player.speedx += 5
-            if event.key == pygame.K_d:
-                player.speedx -= 5
-            if event.key == pygame.K_w:
-                player.speedy += 5
-            if event.key == pygame.K_s:
-                player.speedy -= 5
+            if event.key in keys_down and keys_down[event.key]:
+                if event.key == pygame.K_a:
+                    player.speedx += 5
+                if event.key == pygame.K_d:
+                    player.speedx -= 5
+                if event.key == pygame.K_w:
+                    player.speedy += 5
+                if event.key == pygame.K_s:
+                    player.speedy -= 5
 
     #bateu = pygame.sprite.spritecollide(player, obstaculo, True)
     #if bateu:
 
-
-
-    if tempo % 100 == 0:
+    if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state == RETA:
+        player.rect.centerx = WIDTH / 2
+        player.rect.bottom = HEIGHT - 10
+        
+        
         paredes.empty()
         #state_i = (state_i + 1) % len(states)
         #state = states[state_i]
         
         state = random.choice(states)
+        print('TROCA')
+        print(state)
+        
+        g = Grama(assets, state)
+        paredes.add(g)
+        tempo = 0 
+    elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state != RETA:
+        
+        player.rect.centerx = WIDTH / 2
+        player.rect.bottom = HEIGHT - 10
+        
+        paredes.empty()
+        #state_i = (state_i + 1) % len(states)
+        #state = states[state_i]
+        
+        state = RETA
         
         g = Grama(assets, state)
         paredes.add(g)
         tempo = 0
+
 
     tempo += 1
     player.update()
@@ -80,6 +105,7 @@ while state != FIM:
     
     for parede in pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_mask):
         player.speedx = 0
+        player.speedy = 0
         break
     #all_sprites.add(g)
 
