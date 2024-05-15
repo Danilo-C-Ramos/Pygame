@@ -32,11 +32,21 @@ class Dog(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = random.choice(0, 920)
         self.rect.y = 0
-        self.speedx = random.randint(-5, 5)
+        if self.rect.x == 0:
+            self.speedx = random.randint(3, 5)
+        else:
+            self.speedx = random.randint(-5, -3)
         self.speedy = random.randint(3, 10)
     
     def update(self):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
 
-        #Resto a ver...
+        if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
+            self.rect.x = random.randint(0, 920)
+            self.rect.y = 0
+            if self.rect.x == 0:
+                self.speedx = random.randint(3, 5)
+            else:
+                self.speedx = random.randint(-5, -3)
+            self.speedy = random.randint(3, 10)
