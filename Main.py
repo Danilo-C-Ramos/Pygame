@@ -28,6 +28,10 @@ player = Moto(assets)
 all_sprites.add(player)
 
 state = RETA
+states = [RETA, RETA_D, RETA_E, DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
+
+tempo = 0
+
 # ======== Loop Principal ========
 while state != FIM:
     clock.tick(FPS)
@@ -61,8 +65,11 @@ while state != FIM:
 
     if tempo % 100 == 0:
         paredes.empty()
-        state_i = (state_i + 1) % len(states)
-        state = states[state_i]
+        #state_i = (state_i + 1) % len(states)
+        #state = states[state_i]
+        
+        state = random.choice(states)
+        
         g = Grama(assets, state)
         paredes.add(g)
         tempo = 0
