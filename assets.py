@@ -14,13 +14,13 @@ B_DOIS_VD = 'b_dois_vd_img'
 B_DOIS_H = 'b_dois_h_img'
 B_TRES = 'b_tres_img'
 
-G_RETA = 'b_reta_img'
-G_RETA_E = 'b_reta_e_img'
-G_RETA_D = 'b_reta_d_img'
-G_DOIS_VE = 'b_dois_ve_img'
-G_DOIS_VD = 'b_dois_vd_img'
-G_DOIS_H = 'b_dois_h_img'
-G_TRES = 'b_tres_img'
+G_RETA = 'g_reta_img'
+G_RETA_E = 'g_reta_e_img'
+G_RETA_D = 'g_reta_d_img'
+G_DOIS_VE = 'g_dois_ve_img'
+G_DOIS_VD = 'g_dois_vd_img'
+G_DOIS_H = 'g_dois_h_img'
+G_TRES = 'g_tres_img'
 
 '''
 CARRO = 'carro_img'
@@ -78,7 +78,7 @@ def load_assets():
     assets[G_DOIS_H] = pygame.transform.scale(assets[G_DOIS_H], (WIDTH, HEIGHT))
 
     assets[B_TRES] = pygame.image.load(os.path.join(IMG_DIR, "b_tres.png")).convert()
-    assets[B_TRES] = pygame.transform.scale(assets[G_TRES], (WIDTH, HEIGHT))
+    assets[B_TRES] = pygame.transform.scale(assets[B_TRES], (WIDTH, HEIGHT))
 
     assets[G_TRES] = pygame.image.load(os.path.join(IMG_DIR, "g_tres.png")).convert_alpha()
     assets[G_TRES] = pygame.transform.scale(assets[G_TRES], (WIDTH, HEIGHT))

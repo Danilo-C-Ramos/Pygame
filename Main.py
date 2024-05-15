@@ -8,8 +8,6 @@ from assets import *
 pygame.init()
 pygame.mixer.init()
 
-WIDTH = 920
-HEIGHT = 920
 # ----- Gera tela principal
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Motinha')
@@ -76,16 +74,16 @@ while state != FIM:
     player.update()
 
     g = Grama(assets, state)
+    
     paredes.add(g)
-    
-    all_sprites.add(g)
+    #all_sprites.add(g)
 
-    window.fill(BLACK)  # Preenche com a cor preta
-    window.blit(assets[BACKGROUND], (0, 0))
+    #window.fill(BLACK)  # Preenche com a cor preta
+    #window.blit(assets[BACKGROUND], (0, 0))
     
-    window.blit(assets[G_RETA], (0, 0))
-    #paredes.draw(window)
-    #window.blit(assets[GRAMA], (x, y)) #A gente decide esse x e y no tentativa e erro
+    window.blit(assets[B_RETA], (0, 0))
+
+    paredes.draw(window)
     all_sprites.draw(window)
 
     pygame.display.update()

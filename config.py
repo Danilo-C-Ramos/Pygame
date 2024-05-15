@@ -11,9 +11,9 @@ CARRO_WIDTH = 80
 CARRO_HEIGHT = 120  #Tamanhos aleatorios ate o momento
 
 #Dados gerais
-WIDTH = 920
-HEIGHT = 920
-FPS = 60
+WIDTH = 720
+HEIGHT = 720
+FPS = 30
 
 # Define algumas variáveis com as cores básicas
 WHITE = (255, 255, 255)
