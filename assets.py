@@ -59,9 +59,9 @@ def load_assets():
 
 
     assets[B_DOIS_VE] = pygame.image.load(os.path.join(IMG_DIR, "b_dois_ve.png")).convert()
-    assets[B_RETA_D] = pygame.transform.scale(assets[B_DOIS_VE], (WIDTH, HEIGHT))
+    assets[B_DOIS_VE] = pygame.transform.scale(assets[B_DOIS_VE], (WIDTH, HEIGHT))
 
-    assets[G_DOIS_VE] = pygame.image.load(os.path.join(IMG_DIR, "g_reta_d.png")).convert_alpha()
+    assets[G_DOIS_VE] = pygame.image.load(os.path.join(IMG_DIR, "g_dois_ve.png")).convert_alpha()
     assets[G_DOIS_VE] = pygame.transform.scale(assets[G_DOIS_VE], (WIDTH, HEIGHT))
 
 
