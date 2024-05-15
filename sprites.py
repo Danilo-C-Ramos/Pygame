@@ -29,7 +29,7 @@ class Grama(pygame.sprite.Sprite):
         if state == 1:
             self.image = assets[G_RETA]
         elif state == 2:
-            self.imgage = assets[G_RETA_E]
+            self.image = assets[G_RETA_E]
         elif state == 3:
             self.image = assets[G_RETA_D]
         elif state == 4:
