@@ -27,7 +27,7 @@ groups['paredes'] = paredes
 player = Moto(assets)
 all_sprites.add(player)
 
-state = RETA
+state = RETA_D
 # ======== Loop Principal ========
 while state != FIM:
     clock.tick(FPS)
@@ -71,7 +71,21 @@ while state != FIM:
     #window.fill(BLACK)  # Preenche com a cor preta
     #window.blit(assets[BACKGROUND], (0, 0))
     
-    window.blit(assets[B_RETA], (0, 0))
+    
+    if state == 1:
+        window.blit(assets[B_RETA], (0, 0))
+    elif state == 2:
+        window.blit(assets[B_RETA_E], (0, 0))
+    elif state == 3:
+        window.blit(assets[B_RETA_D], (0, 0))
+    elif state == 4:
+        window.blit(assets[B_DOIS_VE], (0, 0))
+    elif state == 5:
+        window.blit(assets[B_DOIS_VD], (0, 0))
+    elif state == 6:
+        window.blit(assets[B_DOIS_H], (0, 0))
+    elif state == 7:
+        window.blit(assets[B_TRES], (0, 0))
 
     paredes.draw(window)
     all_sprites.draw(window)
