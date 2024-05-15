@@ -22,7 +22,7 @@ class Moto(pygame.sprite.Sprite):
         self.rect.y += self.speedy
 
 
-
+'''
 class Dog(pygame.sprite.Sprite):
     def __init__(self, assets):
         pygame.sprite.Sprite.__init__(self)
@@ -50,3 +50,4 @@ class Dog(pygame.sprite.Sprite):
             else:
                 self.speedx = random.randint(-5, -3)
             self.speedy = random.randint(3, 10)
+'''

@@ -42,6 +42,14 @@ while game:
                 player.speedy -= 5
             if event.key == pygame.K_DOWN:
                 player.speedy += 5
+            if event.key == pygame.K_a:
+                player.speedx -= 5
+            if event.key == pygame.K_d:
+                player.speedx += 5
+            if event.key == pygame.K_w:
+                player.speedy -= 5
+            if event.key == pygame.K_s:
+                player.speedy += 5
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 player.speedx += 5
@@ -50,6 +58,14 @@ while game:
             if event.key == pygame.K_UP:
                 player.speedy += 5
             if event.key == pygame.K_DOWN:
+                player.speedy -= 5
+            if event.key == pygame.K_a:
+                player.speedx += 5
+            if event.key == pygame.K_d:
+                player.speedx -= 5
+            if event.key == pygame.K_w:
+                player.speedy += 5
+            if event.key == pygame.K_s:
                 player.speedy -= 5
 
 
