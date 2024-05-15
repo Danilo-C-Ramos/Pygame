@@ -25,6 +25,12 @@ YELLOW = (255, 255, 0)
 
 # Estados para controle do fluxo da aplicação
 INIT = 0
-GAME = 1
-FIM = 2
-QUIT = 3
+RETA = 1
+RETA_E = 2
+RETA_D = 3
+DOIS_VE = 4
+DOIS_VD = 5
+DOIS_H = 6
+TRES = 7
+FIM = 8
+QUIT = 9

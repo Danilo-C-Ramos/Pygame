@@ -8,6 +8,6 @@ def game_screen(window):
     clock = pygame.time.Clock()
 
     assets = load_assets()
-
+    
 
     return

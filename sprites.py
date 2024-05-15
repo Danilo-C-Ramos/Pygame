@@ -21,6 +21,23 @@ class Moto(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
 
+class Grama(pygame.sprite.Sprite):
+    def __init__(self, assets, state):
+        pygame.sprite.Sprite.__init__(self)
+
+        if state == 1:
+            self.image = assets[G_RETA]
+        #if state == 2: ...
+
+    
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = 0
+        self.rect.y = 0
+        
+        self.assets = assets
+
+
 
 '''
 class Dog(pygame.sprite.Sprite):

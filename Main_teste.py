@@ -27,9 +27,11 @@ groups['all_sprites'] = all_sprites
 player = Moto(assets)
 all_sprites.add(player)
 
+state = RETA
 # ======== Loop Principal ========
-while game:
+while state != FIM:
     clock.tick(FPS)
+  
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
