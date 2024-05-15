@@ -13,7 +13,7 @@ CARRO_HEIGHT = 120  #Tamanhos aleatorios ate o momento
 #Dados gerais
 WIDTH = 720
 HEIGHT = 720
-FPS = 30
+FPS = 60
 
 # Define algumas variáveis com as cores básicas
 WHITE = (255, 255, 255)
