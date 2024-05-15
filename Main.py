@@ -36,14 +36,6 @@ while state != FIM:
         if event.type == pygame.QUIT:
             state = FIM
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                player.speedx -= 5
-            if event.key == pygame.K_RIGHT:
-                player.speedx += 5
-            if event.key == pygame.K_UP:
-                player.speedy -= 5
-            if event.key == pygame.K_DOWN:
-                player.speedy += 5
             if event.key == pygame.K_a:
                 player.speedx -= 5
             if event.key == pygame.K_d:
@@ -53,14 +45,6 @@ while state != FIM:
             if event.key == pygame.K_s:
                 player.speedy += 5
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT:
-                player.speedx += 5
-            if event.key == pygame.K_RIGHT:
-                player.speedx -= 5
-            if event.key == pygame.K_UP:
-                player.speedy += 5
-            if event.key == pygame.K_DOWN:
-                player.speedy -= 5
             if event.key == pygame.K_a:
                 player.speedx += 5
             if event.key == pygame.K_d:
@@ -70,6 +54,12 @@ while state != FIM:
             if event.key == pygame.K_s:
                 player.speedy -= 5
 
+    #bateu = pygame.sprite.spritecollide(player, obstaculo, True)
+    #if bateu:
+
+
+
+    
 
     player.update()
 

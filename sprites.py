@@ -21,6 +21,7 @@ class Moto(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
 
+        
 class Grama(pygame.sprite.Sprite):
     def __init__(self, assets, state):
         pygame.sprite.Sprite.__init__(self)
@@ -49,7 +50,7 @@ class Grama(pygame.sprite.Sprite):
 
 
 '''
-class Dog(pygame.sprite.Sprite):
+class Obstaculo(pygame.sprite.Sprite):
     def __init__(self, assets):
         pygame.sprite.Sprite.__init__(self)
 
