@@ -8,8 +8,8 @@ from assets import *
 pygame.init()
 pygame.mixer.init()
 
-WIDTH = 720
-HEIGHT = 720
+WIDTH = 920
+HEIGHT = 920
 # ----- Gera tela principal
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Motinha')
@@ -21,8 +21,10 @@ clock = pygame.time.Clock()
 assets = load_assets()
 
 all_sprites = pygame.sprite.Group()
+paredes = pygame.sprite.Group()
 groups = {}
 groups['all_sprites'] = all_sprites
+groups['paredes'] = paredes
 
 player = Moto(assets)
 all_sprites.add(player)
@@ -73,9 +75,16 @@ while state != FIM:
 
     player.update()
 
+    g = Grama(assets, state)
+    paredes.add(g)
+    
+    all_sprites.add(g)
+
     window.fill(BLACK)  # Preenche com a cor branca
     window.blit(assets[BACKGROUND], (0, 0))
-    #window.blit(assets[GRAMA], (0, 0))
+    
+    window.blit(assets[G_RETA], (0, 0))
+    #paredes.draw(window)
     #window.blit(assets[GRAMA], (x, y)) #A gente decide esse x e y no tentativa e erro
     all_sprites.draw(window)
 
