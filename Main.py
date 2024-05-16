@@ -9,7 +9,7 @@ pygame.init()
 pygame.mixer.init()
 
 # ----- Gera tela principal
-window = pygame.display.set_mode((WIDTH, HEIGHT))
+window = pygame.display.set_mode((WIDTH + 100, HEIGHT + 100))
 pygame.display.set_caption('Motinha')
 
 game = True
@@ -34,6 +34,10 @@ g = Grama(assets, state)
 paredes.add(g)
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
 retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
+
+vertices = [(0, 0), (0, 0), (0, HEIGHT), (0, HEIGHT)]
+
+quadrado = pygame.draw.polygon(window, RED, vertices)
 
 tempo = 0
 
@@ -103,6 +107,7 @@ while state != FIM:
         
         g = Grama(assets, state)
         paredes.add(g)
+        
         tempo = 0
 
 
@@ -131,6 +136,12 @@ while state != FIM:
         elif player.rect.right > WIDTH/2:
             player.rect.right -= 1
             player.speedx = 0
+
+        vertices = [(parede.rect.left, 0), (parede.rect.right, 0), (parede.rect.bottom, HEIGHT), (parede.rect.top, HEIGHT)]
+
+        quadrado = pygame.draw.polygon(window, RED, vertices)
+
+        
 
 
         '''
@@ -164,7 +175,7 @@ while state != FIM:
     #window.fill(BLACK)  # Preenche com a cor preta
     #window.blit(assets[BACKGROUND], (0, 0))
     
-    
+
     if state == 1:
         window.blit(assets[B_RETA], (0, 0))
     elif state == 2:
