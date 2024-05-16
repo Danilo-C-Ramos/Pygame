@@ -33,6 +33,7 @@ state = RETA
 g = Grama(assets, state)
 paredes.add(g)
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
+retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
 
 tempo = 0
 
@@ -55,19 +56,24 @@ while state != FIM:
                 player.speedy += 5
         if event.type == pygame.KEYUP:
             if event.key in keys_down and keys_down[event.key]:
-                if event.key == pygame.K_a:
+                if event.key == pygame.K_a and player.speedx < 0:
                     player.speedx += 5
-                if event.key == pygame.K_d:
+                if event.key == pygame.K_d and player.speedx > 0:
                     player.speedx -= 5
-                if event.key == pygame.K_w:
+                if event.key == pygame.K_w and player.speedy < 0:
                     player.speedy += 5
-                if event.key == pygame.K_s:
+                if event.key == pygame.K_s  and player.speedy > 0:
                     player.speedy -= 5
 
     #bateu = pygame.sprite.spritecollide(player, obstaculo, True)
     #if bateu:
 
-    if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state == RETA:
+    if player.rect.bottom > HEIGHT:
+        player.speedy = 0
+        player.rect.bottom = HEIGHT
+        
+    
+    if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and (state == RETA or state == RETA_E or state == RETA_D):
         player.rect.centerx = WIDTH / 2
         player.rect.bottom = HEIGHT - 10
         
@@ -83,6 +89,7 @@ while state != FIM:
         g = Grama(assets, state)
         paredes.add(g)
         tempo = 0 
+
     elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state != RETA:
         
         player.rect.centerx = WIDTH / 2
@@ -92,21 +99,66 @@ while state != FIM:
         #state_i = (state_i + 1) % len(states)
         #state = states[state_i]
         
-        state = RETA
+        state = random.choice(retas)
         
         g = Grama(assets, state)
         paredes.add(g)
         tempo = 0
 
 
-    tempo += 1
     player.update()
 
     
     for parede in pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_mask):
-        player.speedx = 0
-        player.speedy = 0
-        break
+
+        #if player.rect.bottom <= HEIGHT/2 and event.key == pygame.K_s:
+        #    player.speedy = 0
+        #    player.rect.bottom -= 1
+        if player.rect.bottom > HEIGHT/2:
+            player.rect.bottom -= 1
+            player.speedy = 0
+
+        elif player.rect.top < HEIGHT/2:
+            player.rect.top += 1
+            player.speedy = 0
+
+        
+        if player.rect.left < WIDTH/2:
+            print('a doida passou!')
+            player.rect.left += 1
+            player.speedx = 0
+ 
+        elif player.rect.right > WIDTH/2:
+            player.rect.right -= 1
+            player.speedx = 0
+
+
+        '''
+        if parede.rect.right >= player.rect.left:
+            print('a doida passou!')
+            player.rect.left += 1
+            player.speedx = 0
+            player.speedy = 0
+            break
+        
+        elif parede.rect.left <= player.rect.right:
+            player.rect.right -= 1
+            player.speedx = 0
+            player.speedy = 0
+            break
+
+        elif parede.rect.top >= player.rect.bottom:
+            player.rect.top -= 1
+            player.speedx = 0
+            player.speedy = 0
+            break
+
+        elif parede.rect.bottom >= player.rect.top:
+            player.rect.bottom += 1
+            player.speedx = 0
+            player.speedy = 0
+            break
+        '''
     #all_sprites.add(g)
 
     #window.fill(BLACK)  # Preenche com a cor preta
@@ -127,7 +179,12 @@ while state != FIM:
         window.blit(assets[B_DOIS_H], (0, 0))
     elif state == 7:
         window.blit(assets[B_TRES], (0, 0))
-
+    
+    
+    tempo += 1
+    if tempo == 60*300:
+        state = FIM
+    
     paredes.draw(window)
     all_sprites.draw(window)
 
