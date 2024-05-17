@@ -54,10 +54,13 @@ while state != FIM:
                 player.image = assets[MOTO_ESQUERDA]
                 player.speedx -= 5
             if event.key == pygame.K_d:
+                player.image = assets['MOTO_DIREITA']
                 player.speedx += 5
             if event.key == pygame.K_w:
+                player.image = assets[MOTO]
                 player.speedy -= 5
             if event.key == pygame.K_s:
+                player.image = assets[MOTO_TRAS]
                 player.speedy += 5
         if event.type == pygame.KEYUP:
             if event.key in keys_down and keys_down[event.key]:

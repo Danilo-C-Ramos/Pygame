@@ -5,7 +5,15 @@ from assets import *
 
 
 BACKGROUND = 'background'
-MOTO = 'moto_img'
+MOTO = 'moto_reta_img'
+MOTO_ESQUERDA = 'moto_esquerda'
+MOTO_DIREITA = 'moto_direita'
+MOTO_DIAGONAL_ESQUERDA = 'moto_diagonal_esquerda'
+MOTO_DIAGONAL_ESQUERDA_BAIXO = 'moto_diagonal_esquerda_baixo'
+MOTO_DIAGONAL_SUDESTE = 'moto_diagonal_sudeste'
+MOTO_DIAGONAL_DIREITA = 'moto_diagonal_direita'
+MOTO_TRAS = 'moto_tras'
+
 B_RETA = 'b_reta_img'
 B_RETA_E = 'b_reta_e_img'
 B_RETA_D = 'b_reta_d_img'
