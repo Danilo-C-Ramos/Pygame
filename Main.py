@@ -51,6 +51,7 @@ while state != FIM:
         if event.type == pygame.KEYDOWN:
             keys_down[event.key] = True
             if event.key == pygame.K_a:
+                player.image = assets[MOTO_ESQUERDA]
                 player.speedx -= 5
             if event.key == pygame.K_d:
                 player.speedx += 5
