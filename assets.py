@@ -5,14 +5,14 @@ from assets import *
 
 
 BACKGROUND = 'background'
-MOTO = 'moto_reta_img'
-MOTO_ESQUERDA = 'moto_esquerda'
-MOTO_DIREITA = 'moto_direita'
-MOTO_DIAGONAL_ESQUERDA = 'moto_diagonal_esquerda'
-MOTO_DIAGONAL_ESQUERDA_BAIXO = 'moto_diagonal_esquerda_baixo'
-MOTO_DIAGONAL_SUDESTE = 'moto_diagonal_sudeste'
-MOTO_DIAGONAL_DIREITA = 'moto_diagonal_direita'
-MOTO_TRAS = 'moto_tras'
+MOTO = 'moto_img'
+MOTO_ESQUERDA = 'moto_esquerda_img'
+MOTO_DIREITA = 'moto_direita_img'
+MOTO_DIAGONAL_ESQUERDA = 'moto_diagonal_esquerda_img'
+MOTO_DIAGONAL_ESQUERDA_BAIXO = 'moto_diagonal_esquerda_baixo_img'
+MOTO_DIAGONAL_SUDESTE = 'moto_diagonal_sudeste_img'
+MOTO_DIAGONAL_DIREITA = 'moto_diagonal_direita_img'
+MOTO_TRAS = 'moto_tras_img'
 
 B_RETA = 'b_reta_img'
 B_RETA_E = 'b_reta_e_img'
@@ -40,9 +40,29 @@ PLACA_DE_PARE = 'placa_de_pare_img'
 def load_assets():
     assets = {}
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR,"background.png")).convert() # Os backgrounds devem mudar conforme o jogador muda de tela
-    assets[MOTO] = pygame.image.load(os.path.join(IMG_DIR, 'motinha.png')).convert_alpha()
+    assets[MOTO] = pygame.image.load(os.path.join(IMG_DIR, 'moto.png')).convert_alpha()
     assets[MOTO] = pygame.transform.scale(assets['moto_img'], (MOTO_WIDTH, MOTO_HEIGHT))
 
+    assets[MOTO_TRAS] = pygame.image.load(os.path.join(IMG_DIR, 'moto_tras.png')).convert_alpha()
+    assets[MOTO_TRAS] = pygame.transform.scale(assets[MOTO_TRAS], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[MOTO_DIREITA] = pygame.image.load(os.path.join(IMG_DIR, 'moto_direita.png')).convert_alpha()
+    assets[MOTO_DIREITA] = pygame.transform.scale(assets[MOTO_DIREITA], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[MOTO_ESQUERDA] = pygame.image.load(os.path.join(IMG_DIR, 'moto_esquerda.png')).convert_alpha()
+    assets[MOTO_ESQUERDA] = pygame.transform.scale(assets[MOTO_ESQUERDA], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[MOTO_DIAGONAL_DIREITA] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_direita.png')).convert_alpha()
+    assets[MOTO_DIAGONAL_DIREITA] = pygame.transform.scale(assets[MOTO_DIAGONAL_DIREITA], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[MOTO_DIAGONAL_ESQUERDA] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_esquerda.png')).convert_alpha()
+    assets[MOTO_DIAGONAL_ESQUERDA] = pygame.transform.scale(assets[MOTO_DIAGONAL_ESQUERDA], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[MOTO_DIAGONAL_SUDESTE] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_sudeste.png')).convert_alpha()
+    assets[MOTO_DIAGONAL_SUDESTE] = pygame.transform.scale(assets[MOTO_DIAGONAL_SUDESTE], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[MOTO_DIAGONAL_ESQUERDA_BAIXO] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_esquerda_baixo.png')).convert_alpha()
+    assets[MOTO_DIAGONAL_ESQUERDA_BAIXO] = pygame.transform.scale(assets[MOTO_DIAGONAL_ESQUERDA_BAIXO], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[B_RETA] = pygame.image.load(os.path.join(IMG_DIR, "b_reta.png")).convert()
     assets[B_RETA] = pygame.transform.scale(assets[B_RETA], (WIDTH, HEIGHT))
@@ -97,14 +117,14 @@ def load_assets():
     assets[CACHORRO] = pygame.image.load(os.path.join(IMG_DIR, "Cachorro.png")).convert()
     assets[CARRO] = pygame.image.load(os.path.join())
     assets[CARRO] = pygame.transform.scale(assets['carro_img'], (CARRO_WIDTH, CARRO_HEIGHT))
-    '''
+    
     #figuras de teste
     assets[PLACA_DE_PARE]=pygame.draw.rect(RED, 10, 10)
     assets[ARVORE]=pygame.draw.rect(GREEN, 10, 10)
     assets[BUEIRO]=pygame.draw.rect(BLACK, 10, 10)
     assets[CACHORRO]=pygame.draw.rect(WHITE, 10, 10)
     assets[CARRO]=pygame.draw.rect(YELLOW, 10, 10)
-
+    '''
     
     return assets
 

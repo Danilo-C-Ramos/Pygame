@@ -50,27 +50,28 @@ while state != FIM:
             state = FIM
         if event.type == pygame.KEYDOWN:
             keys_down[event.key] = True
+            
             if event.key == pygame.K_a:
                 player.image = assets[MOTO_ESQUERDA]
                 player.speedx -= 5
-            if event.key == pygame.K_d:
-                player.image = assets['MOTO_DIREITA']
+            elif event.key == pygame.K_d:
+                player.image = assets[MOTO_DIREITA]
                 player.speedx += 5
-            if event.key == pygame.K_w:
+            elif event.key == pygame.K_w:
                 player.image = assets[MOTO]
                 player.speedy -= 5
-            if event.key == pygame.K_s:
+            elif event.key == pygame.K_s:
                 player.image = assets[MOTO_TRAS]
                 player.speedy += 5
         if event.type == pygame.KEYUP:
             if event.key in keys_down and keys_down[event.key]:
                 if event.key == pygame.K_a and player.speedx < 0:
                     player.speedx += 5
-                if event.key == pygame.K_d and player.speedx > 0:
+                elif event.key == pygame.K_d and player.speedx > 0:
                     player.speedx -= 5
-                if event.key == pygame.K_w and player.speedy < 0:
+                elif event.key == pygame.K_w and player.speedy < 0:
                     player.speedy += 5
-                if event.key == pygame.K_s  and player.speedy > 0:
+                elif event.key == pygame.K_s  and player.speedy > 0:
                     player.speedy -= 5
 
     #bateu = pygame.sprite.spritecollide(player, obstaculo, True)
