@@ -32,7 +32,7 @@ PLACA_DE_PARE = 'placa_de_pare_img'
 def load_assets():
     assets = {}
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR,"background.png")).convert() # Os backgrounds devem mudar conforme o jogador muda de tela
-    assets[MOTO] = pygame.image.load(os.path.join(IMG_DIR, 'playerShip1_orange.png')).convert_alpha()
+    assets[MOTO] = pygame.image.load(os.path.join(IMG_DIR, 'motinha.png')).convert_alpha()
     assets[MOTO] = pygame.transform.scale(assets['moto_img'], (MOTO_WIDTH, MOTO_HEIGHT))
 
 
