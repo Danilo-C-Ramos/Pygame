@@ -1,6 +1,6 @@
 import pygame
 import os
-from config import MOTO_WIDTH, MOTO_HEIGHT, CARRO_WIDTH, CARRO_HEIGHT, IMG_DIR, SND_DIR, WIDTH, HEIGHT
+from config import *
 from assets import *
 
 
@@ -22,13 +22,12 @@ G_DOIS_VD = 'g_dois_vd_img'
 G_DOIS_H = 'g_dois_h_img'
 G_TRES = 'g_tres_img'
 
-'''
 CARRO = 'carro_img'
 GRAMA = 'grama_img'
 ARVORE = 'arvore_img'
 BUEIRO = 'bueiro_img'
 CACHORRO = 'cachorro_img'
-'''
+PLACA_DE_PARE = 'placa_de_pare_img'
 
 def load_assets():
     assets = {}
@@ -91,4 +90,16 @@ def load_assets():
     assets[CARRO] = pygame.image.load(os.path.join())
     assets[CARRO] = pygame.transform.scale(assets['carro_img'], (CARRO_WIDTH, CARRO_HEIGHT))
     '''
+    #figuras de teste
+    assets[PLACA_DE_PARE]=pygame.draw.rect(RED, 10, 10)
+    assets[ARVORE]=pygame.draw.rect(GREEN, 10, 10)
+    assets[BUEIRO]=pygame.draw.rect(BLACK, 10, 10)
+    assets[CACHORRO]=pygame.draw.rect(WHITE, 10, 10)
+    assets[CARRO]=pygame.draw.rect(YELLOW, 10, 10)
+
+    
     return assets
+
+
+#figuras de teste
+
