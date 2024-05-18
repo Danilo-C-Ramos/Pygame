@@ -4,12 +4,13 @@ import pygame
 from config import *
 from game_loop import *
 from assets import *
+import time
 
 pygame.init()
 pygame.mixer.init()
 
 # ----- Gera tela principal
-window = pygame.display.set_mode((WIDTH + 100, HEIGHT + 100))
+window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Motinha')
 
 game = True
@@ -51,15 +52,19 @@ while state != FIM:
         if event.type == pygame.KEYDOWN:
             keys_down[event.key] = True
             
-            if event.key == pygame.K_a:
+            #if event.key == pygame.K_w and event.key == pygame.K_a:
+                #player.speedx = -3.53
+                #player.speedy = -3.53
+                #player.image = assets[MOTO_DIAGONAL_ESQUERDA]
+            if event.key == pygame.K_w:
+                player.image = assets[MOTO]
+                player.speedy -= 5
+            elif event.key == pygame.K_a:
                 player.image = assets[MOTO_ESQUERDA]
                 player.speedx -= 5
             elif event.key == pygame.K_d:
                 player.image = assets[MOTO_DIREITA]
                 player.speedx += 5
-            elif event.key == pygame.K_w:
-                player.image = assets[MOTO]
-                player.speedy -= 5
             elif event.key == pygame.K_s:
                 player.image = assets[MOTO_TRAS]
                 player.speedy += 5
@@ -77,16 +82,19 @@ while state != FIM:
     #bateu = pygame.sprite.spritecollide(player, obstaculo, True)
     #if bateu:
 
+    if player.speedy == -5:
+        player.image = assets[MOTO]
+    
     if player.rect.bottom > HEIGHT:
         player.speedy = 0
         player.rect.bottom = HEIGHT
         
     
     if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and (state == RETA or state == RETA_E or state == RETA_D):
+        time.sleep(0.25)
         player.rect.centerx = WIDTH / 2
         player.rect.bottom = HEIGHT - 10
-        
-        
+    
         paredes.empty()
         #state_i = (state_i + 1) % len(states)
         #state = states[state_i]
@@ -100,7 +108,7 @@ while state != FIM:
         tempo = 0 
 
     elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state != RETA:
-        
+        time.sleep(0.25)
         player.rect.centerx = WIDTH / 2
         player.rect.bottom = HEIGHT - 10
         
@@ -139,6 +147,7 @@ while state != FIM:
             player.speedx = 0
  
         elif player.rect.right > WIDTH/2:
+            print('elefante')
             player.rect.right -= 1
             player.speedx = 0
 
