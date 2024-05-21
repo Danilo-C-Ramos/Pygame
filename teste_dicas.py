@@ -41,6 +41,7 @@ modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
 modulo= 0
 sla=0
 ressorteia= True
+decisao=False
 
 
 font = pygame.font.SysFont(None, 55)
@@ -99,7 +100,7 @@ while state != FIM:
         player.rect.bottom = HEIGHT
         
     #passa pra decisao
-    if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and (state == RETA or state == RETA_E or state == RETA_D) and ressorteia:
+    if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and decisao: #and (state == RETA or state == RETA_E or state == RETA_D):
         
         time.sleep(0.25)
         player.rect.centerx = WIDTH / 2
@@ -113,14 +114,14 @@ while state != FIM:
         state = random.choice(states)
         print('TROCA')
         print(state)
-        modulo = random.choice(modulos)
-        sla=0
+        
+        sla+=1
       
         g = Grama(assets, state)
         paredes.add(g)
 
     #passa pra reta
-    elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state != RETA:
+    elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and ressorteia: #and state != RETA:
         
         time.sleep(0.25)
         player.speedx= 0
@@ -132,10 +133,14 @@ while state != FIM:
         #state = states[state_i]
         
         state = random.choice(retas)
-        
+        sla=0
+
         g = Grama(assets, state)
         paredes.add(g)
-        
+
+        modulo = random.choice(modulos)
+        ressorteia=False
+        decisao=True
     player.update()
 
     
@@ -183,29 +188,41 @@ while state != FIM:
     timer_text = font.render(f"Tempo restante: {tempo_faltando}s", True, (255, 255, 255))
     window.blit(timer_text, (20, 20))
 
-    if modulo==POLICIA and state in retas:
-        window.blit(assets[POLICIA],(10,10))
+    if modulo==POLICIA: # and state in retas:
+        if state in retas:
+            window.blit(assets[POLICIA],(10,10))
         #print('UÉ')
-        sla+=1
-        ressorteia=False
-        if sla==3:
+        
+        ressorteia=False        
+        decisao=True
+        print(sla)
+        if sla==3: #basicamente 3
             ressorteia=True
+            decisao=False
 
-    elif modulo==OUTDOOR_INSPER and state in retas:
+
+    elif modulo==OUTDOOR_INSPER:# and state in retas:
         #print('inxper')
-        window.blit(assets[OUTDOOR_INSPER],(10,10))
-        sla+=1
+        if state in retas:
+            window.blit(assets[OUTDOOR_INSPER],(10,10))
         ressorteia=False
-        if sla==3:
+        decisao=True
+        print(sla)
+        if sla==3: #basicamente 3
             ressorteia=True
+            decisao=False
 
-    elif modulo==OUTDOOR_ESPM and state in retas:
+
+    elif modulo==OUTDOOR_ESPM: # and state in retas:
         #print('festa')
-        window.blit(assets[OUTDOOR_ESPM],(10,10))
-        sla+=1
+        if state in retas:
+            window.blit(assets[OUTDOOR_ESPM],(10,10))
         ressorteia=False
-        if sla==3:
+        decisao=True
+        print(sla)
+        if sla==3: #basicamente 3
             ressorteia=True
+            decisao=False
 
     tempo += 1
     if tempo == 60*300:
