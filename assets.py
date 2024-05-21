@@ -34,7 +34,7 @@ CARRO = 'carro_img'
 GRAMA = 'grama_img'
 ARVORE = 'arvore_img'
 BUEIRO = 'bueiro_img'
-CACHORRO = 'cachorro_img'
+CARAMELO = 'caramelo_img'
 PLACA_DE_PARE = 'placa_de_pare_img'
 HIDRANTE = 'hidrante_img'
 PARE = 'placa_pare_img'
@@ -140,6 +140,12 @@ def load_assets():
 
     assets[BUEIRO] = pygame.image.load(os.path.join(IMG_DIR, 'bueiro.png')).convert_alpha()
     assets[BUEIRO] = pygame.transform.scale(assets[BUEIRO], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[CARAMELO] = pygame.image.load(os.path.join(IMG_DIR, 'caramelo.png')).convert_alpha()
+    assets[CARAMELO] = pygame.transform.scale(assets[CARAMELO], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[ARVORE] = pygame.image.load(os.path.join(IMG_DIR, 'arvore.png')).convert_alpha()
+    assets[ARVORE] = pygame.transform.scale(assets[ARVORE], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[OUTDOOR_INSPER] = pygame.image.load(os.path.join(IMG_DIR, 'outdoor_insper.png')).convert_alpha()
     assets[OUTDOOR_INSPER] = pygame.transform.scale(assets[OUTDOOR_INSPER], (MOTO_WIDTH, MOTO_HEIGHT))
