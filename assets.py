@@ -38,6 +38,7 @@ CARAMELO = 'caramelo_img'
 PLACA_DE_PARE = 'placa_de_pare_img'
 HIDRANTE = 'hidrante_img'
 PARE = 'placa_pare_img'
+JOIA = 'joia_img'
 PROIBIDO = 'placa_proibido_img'
 RETO = 'placa_reto_img'
 ANIMAL = 'placa_animal_img'
@@ -146,6 +147,9 @@ def load_assets():
 
     assets[ARVORE] = pygame.image.load(os.path.join(IMG_DIR, 'arvore.png')).convert_alpha()
     assets[ARVORE] = pygame.transform.scale(assets[ARVORE], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[JOIA] = pygame.image.load(os.path.join(IMG_DIR, 'joia.png')).convert_alpha()
+    assets[JOIA] = pygame.transform.scale(assets[JOIA], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[OUTDOOR_INSPER] = pygame.image.load(os.path.join(IMG_DIR, 'outdoor_insper.png')).convert_alpha()
     assets[OUTDOOR_INSPER] = pygame.transform.scale(assets[OUTDOOR_INSPER], (MOTO_WIDTH, MOTO_HEIGHT))
