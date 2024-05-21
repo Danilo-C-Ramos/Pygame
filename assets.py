@@ -42,6 +42,7 @@ PROIBIDO = 'placa_proibido_img'
 RETO = 'placa_reto_img'
 ANIMAL = 'placa_animal_img'
 POLICIA = 'policia_img'
+BUEIRO = 'bueiro_img'
 OUTDOOR_INSPER = 'outdoor_insper_img'
 OUTDOOR_ESPM = 'outdoor_espm_img'
 
@@ -131,11 +132,14 @@ def load_assets():
     assets[PROIBIDO] = pygame.image.load(os.path.join(IMG_DIR, 'proibido.png')).convert_alpha()
     assets[PROIBIDO] = pygame.transform.scale(assets[PROIBIDO], (MOTO_WIDTH, MOTO_HEIGHT))
 
-    assets[ANIMAL] = pygame.image.load(os.path.join(IMG_DIR, 'animalpng')).convert_alpha()
+    assets[ANIMAL] = pygame.image.load(os.path.join(IMG_DIR, 'animal.png')).convert_alpha()
     assets[ANIMAL] = pygame.transform.scale(assets[ANIMAL], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[POLICIA] = pygame.image.load(os.path.join(IMG_DIR, 'policia.png')).convert_alpha()
     assets[POLICIA] = pygame.transform.scale(assets[POLICIA], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[BUEIRO] = pygame.image.load(os.path.join(IMG_DIR, 'bueiro.png')).convert_alpha()
+    assets[BUEIRO] = pygame.transform.scale(assets[BUEIRO], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[OUTDOOR_INSPER] = pygame.image.load(os.path.join(IMG_DIR, 'outdoor_insper.png')).convert_alpha()
     assets[OUTDOOR_INSPER] = pygame.transform.scale(assets[OUTDOOR_INSPER], (MOTO_WIDTH, MOTO_HEIGHT))
