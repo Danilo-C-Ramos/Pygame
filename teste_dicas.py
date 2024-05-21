@@ -33,15 +33,17 @@ all_sprites.add(player)
 state = RETA
 g = Grama(assets, state)
 paredes.add(g)
-
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
 retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
 
-#modulos e dicas
-dicas= [HIDRANTE]
+dicas= [HIDRANTE, RETO, PROIBIDO, ANIMAL]
 modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
-modulo=0
+modulo= 0
+sla=0
+ressorteia= True
 
+
+font = pygame.font.SysFont(None, 55)
 #vertices = [(0, 0), (0, 0), (0, HEIGHT), (0, HEIGHT)]
 
 #quadrado = pygame.draw.polygon(window, RED, vertices)
@@ -52,6 +54,7 @@ tempo = 0
 while state != FIM:
     clock.tick(FPS)
   
+  #movimentation
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             state = FIM
@@ -95,45 +98,28 @@ while state != FIM:
         player.speedy = 0
         player.rect.bottom = HEIGHT
         
-    
-    if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and (state == RETA or state == RETA_E or state == RETA_D):
+    #passa pra decisao
+    if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and (state == RETA or state == RETA_E or state == RETA_D) and ressorteia:
         
         time.sleep(0.25)
         player.rect.centerx = WIDTH / 2
         player.rect.bottom = HEIGHT - 10
         player.speedx=0
 
-        '''
-        player.image = assets[MOTO]
-        player.speedx=-5
-        '''
-    
         paredes.empty()
         #state_i = (state_i + 1) % len(states)
         #state = states[state_i]
-        
+
         state = random.choice(states)
         print('TROCA')
         print(state)
-
-        modulo=random.choice(modulos)
-
-        
-        '''
-        print('zerou')
-        ale=random.randint(1,5)
-        j=1
-        while j <= ale:
-            a=random.choice(dicas)
-            cenario.append(a)
-            j+=1
-        print(cenario)
-        '''
-        
+        modulo = random.choice(modulos)
+        sla=0
+      
         g = Grama(assets, state)
         paredes.add(g)
-        tempo = 0 
 
+    #passa pra reta
     elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state != RETA:
         
         time.sleep(0.25)
@@ -150,8 +136,6 @@ while state != FIM:
         g = Grama(assets, state)
         paredes.add(g)
         
-        tempo = 0
-
     player.update()
 
     
@@ -160,19 +144,22 @@ while state != FIM:
         if player.rect.bottom > HEIGHT:
             player.speedy = 0
             player.rect.bottom = HEIGHT
+
         elif player.rect.top <= 0:
             player.speedy = 0
-            player.rect.top = 0
+            player.rect.top = 1
+
         elif player.rect.left <= 0:
             player.speedx = 0
             player.rect.left = 0
+            
         elif player.rect.right >= WIDTH:
            player.speedx = 0
            player.rect.right = WIDTH
+        
+        tempo += 2
 
-        print('colisão')
-    
-    
+
     if state == 1:
         window.blit(assets[B_RETA], (0, 0))
     elif state == 2:
@@ -188,28 +175,41 @@ while state != FIM:
     elif state == 7:
         window.blit(assets[B_TRES], (0, 0))
 
+
+    paredes.draw(window)
+    all_sprites.draw(window)
+    
+    tempo_faltando = 300 - int(tempo / 60)
+    timer_text = font.render(f"Tempo restante: {tempo_faltando}s", True, (255, 255, 255))
+    window.blit(timer_text, (20, 20))
+
     if modulo==POLICIA and state in retas:
-        window.blit(assets[POLICIA],(WIDTH/2,HEIGHT/2))
+        window.blit(assets[POLICIA],(10,10))
         #print('UÉ')
+        sla+=1
+        ressorteia=False
+        if sla==3:
+            ressorteia=True
+
     elif modulo==OUTDOOR_INSPER and state in retas:
         #print('inxper')
-        window.blit(assets[OUTDOOR_INSPER],(WIDTH/2,HEIGHT/2))
+        window.blit(assets[OUTDOOR_INSPER],(10,10))
+        sla+=1
+        ressorteia=False
+        if sla==3:
+            ressorteia=True
+
     elif modulo==OUTDOOR_ESPM and state in retas:
         #print('festa')
-        window.blit(assets[OUTDOOR_ESPM],(200,200))
+        window.blit(assets[OUTDOOR_ESPM],(10,10))
+        sla+=1
+        ressorteia=False
+        if sla==3:
+            ressorteia=True
 
-    '''
-    if POLICIA in cenario :
-        window.blit(assets[POLICIA],(WIDTH-40,HEIGHT-40))
-        print('UÉ')
-    '''
-    
     tempo += 1
     if tempo == 60*300:
         state = FIM
-    
-    paredes.draw(window)
-    all_sprites.draw(window)
 
     pygame.display.update()
 
@@ -217,4 +217,4 @@ while state != FIM:
 #game_screen(window)
 
 # ===== Finalização =====
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados    
+pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
