@@ -5,8 +5,8 @@ IMG_DIR = path.join(path.dirname(__file__), 'assets', 'img')
 SND_DIR = path.join(path.dirname(__file__), 'assets', 'snd')
 #FNT_DIR = path.join(path.dirname(__file__), 'assets', 'font')
 
-MOTO_WIDTH = 220
-MOTO_HEIGHT = 220
+MOTO_WIDTH = 170
+MOTO_HEIGHT = 170
 CARRO_WIDTH = 80
 CARRO_HEIGHT = 120  #Tamanhos aleatorios ate o momento
 

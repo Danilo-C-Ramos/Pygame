@@ -157,12 +157,15 @@ while state != FIM:
         if player.rect.bottom > HEIGHT:
             player.speedy = 0
             player.rect.bottom = HEIGHT
+
         elif player.rect.top <= 0:
             player.speedy = 0
-            player.rect.top = 0
+            player.rect.top = 1
+
         elif player.rect.left <= 0:
             player.speedx = 0
             player.rect.left = 0
+            
         elif player.rect.right >= WIDTH:
            player.speedx = 0
            player.rect.right = WIDTH
