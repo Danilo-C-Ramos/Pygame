@@ -35,9 +35,12 @@ g = Grama(assets, state)
 paredes.add(g)
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
 retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
-dicas= [HIDRANTE, POLICIA]
-modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM]
 
+dicas= [HIDRANTE]
+modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
+modulo= 0
+
+font = pygame.font.SysFont(None, 55)
 #vertices = [(0, 0), (0, 0), (0, HEIGHT), (0, HEIGHT)]
 
 #quadrado = pygame.draw.polygon(window, RED, vertices)
@@ -100,36 +103,17 @@ while state != FIM:
         player.rect.bottom = HEIGHT - 10
         player.speedx=0
 
-        '''
-        player.image = assets[MOTO]
-        player.speedx=-5
-        '''
-    
         paredes.empty()
         #state_i = (state_i + 1) % len(states)
         #state = states[state_i]
-        
+
         state = random.choice(states)
         print('TROCA')
         print(state)
-
-        modulo=random.choice(modulos)
-        cenario=[]
-        
-        '''
-        print('zerou')
-        ale=random.randint(1,5)
-        j=1
-        while j <= ale:
-            a=random.choice(dicas)
-            cenario.append(a)
-            j+=1
-        print(cenario)
-        '''
-        
+        modulo = random.choice(modulos)
+      
         g = Grama(assets, state)
         paredes.add(g)
-        tempo = 0 
 
     elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state != RETA:
         
@@ -147,8 +131,6 @@ while state != FIM:
         g = Grama(assets, state)
         paredes.add(g)
         
-        tempo = 0
-
     player.update()
 
     
@@ -169,14 +151,10 @@ while state != FIM:
         elif player.rect.right >= WIDTH:
            player.speedx = 0
            player.rect.right = WIDTH
+        
+        tempo += 2
 
 
-
-
-        print('colisão')
-    
-    
-    
     if state == 1:
         window.blit(assets[B_RETA], (0, 0))
     elif state == 2:
@@ -192,18 +170,31 @@ while state != FIM:
     elif state == 7:
         window.blit(assets[B_TRES], (0, 0))
 
-    '''
-    if POLICIA in cenario :
-        window.blit(assets[POLICIA],(WIDTH-40,HEIGHT-40))
-        print('UÉ')
-    '''
     
-    tempo += 1
-    if tempo == 60*300:
-        state = FIM
+    
+   
     
     paredes.draw(window)
     all_sprites.draw(window)
+    
+    tempo_faltando = 300 - int(tempo / 60)
+    timer_text = font.render(f"Tempo restante: {tempo_faltando}s", True, (255, 255, 255))
+    window.blit(timer_text, (20, 20))
+
+    if modulo==POLICIA and state in retas:
+        window.blit(assets[POLICIA],(10,10))
+        #print('UÉ')
+    elif modulo==OUTDOOR_INSPER and state in retas:
+        #print('inxper')
+        window.blit(assets[OUTDOOR_INSPER],(10,10))
+    elif modulo==OUTDOOR_ESPM and state in retas:
+        #print('festa')
+        window.blit(assets[OUTDOOR_ESPM],(10,10))
+
+
+    tempo += 1
+    if tempo == 60*300:
+        state = FIM
 
     pygame.display.update()
 
