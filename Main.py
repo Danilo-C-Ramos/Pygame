@@ -38,9 +38,9 @@ retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
 dicas= [HIDRANTE, POLICIA]
 modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM]
 
-vertices = [(0, 0), (0, 0), (0, HEIGHT), (0, HEIGHT)]
+#vertices = [(0, 0), (0, 0), (0, HEIGHT), (0, HEIGHT)]
 
-quadrado = pygame.draw.polygon(window, RED, vertices)
+#quadrado = pygame.draw.polygon(window, RED, vertices)
 
 tempo = 0
 
@@ -93,10 +93,13 @@ while state != FIM:
         
     
     if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and (state == RETA or state == RETA_E or state == RETA_D):
+        
+        
         time.sleep(0.25)
         player.rect.centerx = WIDTH / 2
         player.rect.bottom = HEIGHT - 10
         player.speedx=0
+
         '''
         player.image = assets[MOTO]
         player.speedx=-5
@@ -112,6 +115,8 @@ while state != FIM:
 
         modulo=random.choice(modulos)
         cenario=[]
+        
+        '''
         print('zerou')
         ale=random.randint(1,5)
         j=1
@@ -120,15 +125,16 @@ while state != FIM:
             cenario.append(a)
             j+=1
         print(cenario)
-        
+        '''
         
         g = Grama(assets, state)
         paredes.add(g)
         tempo = 0 
 
     elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state != RETA:
+        
         time.sleep(0.25)
-        player.speedx=0
+        player.speedx= 0
         player.rect.centerx = WIDTH / 2
         player.rect.bottom = HEIGHT - 10
         
@@ -147,66 +153,27 @@ while state != FIM:
 
     
     for parede in pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_mask):
-
-        #if player.rect.bottom <= HEIGHT/2 and event.key == pygame.K_s:
-        #    player.speedy = 0
-        #    player.rect.bottom -= 1
-        if player.rect.bottom > HEIGHT/2:
-            player.rect.bottom -= 1
-            player.speedy = 0
-
-        elif player.rect.top < HEIGHT/2:
-            player.rect.top += 1
-            player.speedy = 0
-
-        if player.rect.left < WIDTH/2:
-            print('a doida passou!')
-            player.rect.left += 1
-            player.speedx = 0
- 
-        elif player.rect.right > WIDTH/2:
-            print('elefante')
-            player.rect.right -= 1
-            player.speedx = 0
-
-        vertices = [(parede.rect.left, 0), (parede.rect.right, 0), (parede.rect.bottom, HEIGHT), (parede.rect.top, HEIGHT)]
-
-        quadrado = pygame.draw.polygon(window, RED, vertices)
-
         
-
-        '''
-        if parede.rect.right >= player.rect.left:
-            print('a doida passou!')
-            player.rect.left += 1
-            player.speedx = 0
+        if player.rect.bottom > HEIGHT:
             player.speedy = 0
-            break
-        
-        elif parede.rect.left <= player.rect.right:
-            player.rect.right -= 1
-            player.speedx = 0
+            player.rect.bottom = HEIGHT
+        elif player.rect.top <= 0:
             player.speedy = 0
-            break
-
-        elif parede.rect.top >= player.rect.bottom:
-            player.rect.top -= 1
+            player.rect.top = 0
+        elif player.rect.left <= 0:
             player.speedx = 0
-            player.speedy = 0
-            break
+            player.rect.left = 0
+        elif player.rect.right >= WIDTH:
+           player.speedx = 0
+           player.rect.right = WIDTH
 
-        elif parede.rect.bottom >= player.rect.top:
-            player.rect.bottom += 1
-            player.speedx = 0
-            player.speedy = 0
-            break
-        '''
-    #all_sprites.add(g)
 
-    #window.fill(BLACK)  # Preenche com a cor preta
-    #window.blit(assets[BACKGROUND], (0, 0))
+
+
+        print('colisão')
     
-
+    
+    
     if state == 1:
         window.blit(assets[B_RETA], (0, 0))
     elif state == 2:
@@ -222,10 +189,11 @@ while state != FIM:
     elif state == 7:
         window.blit(assets[B_TRES], (0, 0))
 
+    '''
     if POLICIA in cenario :
         window.blit(assets[POLICIA],(WIDTH-40,HEIGHT-40))
         print('UÉ')
-    
+    '''
     
     tempo += 1
     if tempo == 60*300:
