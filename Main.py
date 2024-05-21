@@ -183,10 +183,7 @@ while state != FIM:
     
     paredes.draw(window)
     all_sprites.draw(window)
-    
-    tempo_faltando = 300 - int(tempo / 60)
-    timer_text = font.render(f"Tempo restante: {tempo_faltando}s", True, (255, 255, 255))
-    window.blit(timer_text, (20, 20))
+
 
     if modulo==POLICIA and state in retas:
         window.blit(assets[POLICIA],(10,10))
@@ -199,8 +196,13 @@ while state != FIM:
         window.blit(assets[OUTDOOR_ESPM],(10,10))
 
 
-    tempo += 1
-    if tempo == 60*300:
+    time = pygame.time.get_ticks() / 1000.0
+
+    tempo_atual = END_TIME - time
+
+    timer(window, assets, tempo_atual)
+    
+    if time == 0:
         state = FIM
 
     pygame.display.update()

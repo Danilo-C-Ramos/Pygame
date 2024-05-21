@@ -8,6 +8,7 @@ import math
 BACKGROUND = 'background'
 T_INI = 'fundo_init_img'
 INIT_FONT = 'fonte_inicio'
+TIMER_FONT = 'fonte_timer'
 
 MOTO = 'moto_img'
 MOTO_ESQUERDA = 'moto_esquerda_img'
@@ -166,6 +167,7 @@ def load_assets():
 
 
     assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'pixeled.ttf'), 60)
+    assets[TIMER_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'ds-digi.ttf'), 40)
 
 
     '''
@@ -248,5 +250,42 @@ def init_screen(screen, assets):
         pygame.display.flip()
 
     return state
+
+
+def timer(screen, assets, tempo):
+    
+    minutos = tempo // 60
+    segundos = tempo % 60
+
+
+
+    fundo_digitos = assets[TIMER_FONT].render(" 8:88", True, GRAY)
+    fundo_digitos.set_alpha(100)
+    fundo_digitos_rect = fundo_digitos.get_rect()
+    
+    
+    digitos = assets[TIMER_FONT].render(f" {int(minutos)}:{int(segundos):02}", True, YELLOW)
+    digitos_rect = digitos.get_rect()
+    digitos_rect.center = (60, 60)
+
+    
+    sobra = 15
+    fundo_rect = pygame.Rect(
+        X_TIMER - sobra, Y_TIMER - sobra,
+        X_TIMER + digitos_rect.width - sobra, Y_TIMER + sobra,
+                   )
+    
+
+    # Desenha o retângulo atrás do texto do timer
+    pygame.draw.rect(screen, GRAY, fundo_rect)
+    
+    #borda para o triangulo:
+    inner_rect = fundo_rect.inflate(-10, -10)
+    pygame.draw.rect(screen, BLACK, inner_rect)
+
+    screen.blit(fundo_digitos, digitos_rect.center)
+    screen.blit(digitos, (X_TIMER,Y_TIMER))
+    return 
+
 
 

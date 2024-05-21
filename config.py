@@ -14,6 +14,9 @@ CARRO_HEIGHT = 120  #Tamanhos aleatorios ate o momento
 WIDTH = 720
 HEIGHT = 720
 FPS = 60
+END_TIME = 300
+X_TIMER = 60
+Y_TIMER = 60
 
 # Define algumas variáveis com as cores básicas
 WHITE = (255, 255, 255)
@@ -22,6 +25,7 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
+GRAY = (110, 110, 110)
 
 # Estados para controle do fluxo da aplicação
 INIT = 0
