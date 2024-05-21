@@ -19,6 +19,13 @@ clock = pygame.time.Clock()
 
 assets = load_assets()
 
+font = pygame.font.SysFont(None, 55)
+
+state = init_screen(window, assets)
+
+
+
+
 all_sprites = pygame.sprite.Group()
 paredes = pygame.sprite.Group()
 groups = {}
@@ -30,7 +37,7 @@ keys_down = {}
 player = Moto(assets)
 all_sprites.add(player)
 
-state = RETA
+
 g = Grama(assets, state)
 paredes.add(g)
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
@@ -40,7 +47,7 @@ dicas= [HIDRANTE, RETO, PROIBIDO, ANIMAL, CARAMELO, ARVORE]
 modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
 modulo= 0
 
-font = pygame.font.SysFont(None, 55)
+
 #vertices = [(0, 0), (0, 0), (0, HEIGHT), (0, HEIGHT)]
 
 #quadrado = pygame.draw.polygon(window, RED, vertices)

@@ -2,9 +2,13 @@ import pygame
 import os
 from config import *
 from assets import *
+import math
 
 
 BACKGROUND = 'background'
+T_INI = 'fundo_init_img'
+INIT_FONT = 'fonte_inicio'
+
 MOTO = 'moto_img'
 MOTO_ESQUERDA = 'moto_esquerda_img'
 MOTO_DIREITA = 'moto_direita_img'
@@ -52,6 +56,9 @@ def load_assets():
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR,"background.png")).convert() # Os backgrounds devem mudar conforme o jogador muda de tela
     assets[MOTO] = pygame.image.load(os.path.join(IMG_DIR, 'moto.png')).convert_alpha()
     assets[MOTO] = pygame.transform.scale(assets['moto_img'], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[T_INI] = pygame.image.load(os.path.join(IMG_DIR, 'fundo_init.png')).convert_alpha()
+    assets[T_INI] = pygame.transform.scale(assets[T_INI], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[MOTO_TRAS] = pygame.image.load(os.path.join(IMG_DIR, 'moto_tras.png')).convert_alpha()
     assets[MOTO_TRAS] = pygame.transform.scale(assets[MOTO_TRAS], (MOTO_WIDTH, MOTO_HEIGHT))
@@ -158,6 +165,9 @@ def load_assets():
     assets[OUTDOOR_ESPM] = pygame.transform.scale(assets[OUTDOOR_ESPM], (MOTO_WIDTH, MOTO_HEIGHT))
 
 
+    assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'pixeled.ttf'), 60)
+
+
     '''
     assets[ARVORE] = pygame.image.load(os.path.join(IMG_DIR, "Arvore.png")).convert()
     assets[BUEIRO] = pygame.image.load(os.path.join(IMG_DIR, "Bueiro.png")).convert()
@@ -175,6 +185,68 @@ def load_assets():
     
     return assets
 
+def init_screen(screen, assets):
+    font = pygame.font.SysFont(None, 40)
 
-#figuras de teste
+    # Carrega o fundo da tela inicial
+    background = assets[T_INI]
+    background = pygame.transform.scale(assets[T_INI], (WIDTH, HEIGHT))
+
+    background_rect = background.get_rect()
+  
+    transparencia = pygame.Surface((WIDTH, HEIGHT))
+    transparencia.set_alpha(220)
+    transparencia.fill(BLACK)
+
+    texto1 = font.render("Pressione Qualquer Tecla", True, WHITE)
+    texto1_rect = texto1.get_rect()
+    texto1_rect.center = (WIDTH / 2, HEIGHT - 100)
+
+    nome = assets[INIT_FONT].render('Insper Eats', True, RED)
+    nome_rect = nome.get_rect()
+    nome_rect.center = (WIDTH / 2, HEIGHT / 2)
+
+    pulso = 3  # Velocidade da pulsação
+    max_alpha = 255  # Transparência máxima
+    min_alpha = 20   # Transparência mínima
+
+    # Variável para o ajuste de velocidade
+    clock = pygame.time.Clock()
+
+    running = True
+    while running:
+
+        # Ajusta a velocidade do jogo.
+        clock.tick(FPS)
+
+        # Processa os eventos (mouse, teclado, botão, etc).
+        for event in pygame.event.get():
+            # Verifica se foi fechado.
+            if event.type == pygame.QUIT:
+                state = QUIT
+                running = False
+
+            if event.type == pygame.KEYUP:
+                state = RETA
+                running = False
+
+
+        #Efeito de piscar na tela:
+        time = pygame.time.get_ticks() / 1000.0
+        alpha = (max_alpha - min_alpha) / 2 * (math.sin(pulso * time) + 1) + min_alpha
+        texto1.set_alpha(alpha)
+
+        # A cada loop, redesenha o fundo e os sprites
+        screen.fill(BLACK)
+        screen.blit(background, background_rect)
+        screen.blit(transparencia, (0, 0))
+
+        screen.blit(texto1, texto1_rect)
+        screen.blit(nome, nome_rect)
+
+        # Depois de desenhar tudo, inverte o display.
+        pygame.display.flip()
+
+    return state
+
 
