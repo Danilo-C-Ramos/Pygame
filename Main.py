@@ -43,16 +43,17 @@ retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
 dicas= [HIDRANTE, RETO, PROIBIDO, ANIMAL, CARAMELO, ARVORE]
 modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
 modulo= 0
-sla=0
+escolha=0
 ressorteia= True
 decisao=False
 colisao = 0
 
 tempo = 0
+anterior = 'banana'
 
 # ======== Loop Principal ========
 while state != FIM:
-    
+    states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
     clock.tick(FPS)
   
     for event in pygame.event.get():
@@ -108,15 +109,20 @@ while state != FIM:
         paredes.empty()
         #state_i = (state_i + 1) % len(states)
         #state = states[state_i]
+        
+        anterior = state
+        while anterior == state:
+            state = random.choice(states)
 
-        state = random.choice(states)
+
         print('TROCA')
         print(state)
         
-        sla+=1
+        escolha+=1
       
         g = Grama(assets, state)
         paredes.add(g)
+        
 
     #passa pra reta
     elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and ressorteia: #and state != RETA:
@@ -131,7 +137,8 @@ while state != FIM:
         #state = states[state_i]
         
         state = random.choice(retas)
-        sla=0
+        escolha=0
+        anterior = 'banana'
 
         g = Grama(assets, state)
         paredes.add(g)
@@ -193,7 +200,7 @@ while state != FIM:
         
         ressorteia=False        
         decisao=True
-        if sla==2: #basicamente 3
+        if escolha==2: #basicamente 3
             ressorteia=True
             decisao=False
 
@@ -204,7 +211,7 @@ while state != FIM:
             window.blit(assets[OUTDOOR_INSPER],(10,10))
         ressorteia=False
         decisao=True
-        if sla==3: #basicamente 3
+        if escolha==3: #basicamente 3
             ressorteia=True
             decisao=False
 
@@ -215,7 +222,7 @@ while state != FIM:
             window.blit(assets[OUTDOOR_ESPM],(10,10))
         ressorteia=False
         decisao=True
-        if sla==3: #basicamente 3
+        if escolha==3: #basicamente 3
             ressorteia=True
             decisao=False
 
