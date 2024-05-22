@@ -10,6 +10,7 @@ BACKGROUND = 'background'
 T_INI = 'fundo_init_img'
 INIT_FONT = 'fonte_inicio'
 TIMER_FONT = 'fonte_timer'
+RETA_IMAGEM = 'reta_imagem_img'
 
 MOTO = 'moto_img'
 MOTO_ESQUERDA = 'moto_esquerda_img'
@@ -56,6 +57,9 @@ OUTDOOR_ESPM = 'outdoor_espm_img'
 def load_assets():
     assets = {}
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR,"background.png")).convert() # Os backgrounds devem mudar conforme o jogador muda de tela
+    assets[RETA_IMAGEM] = pygame.image.load(os.path.join(IMG_DIR,"reta_imagem.png")).convert()
+    assets[RETA_IMAGEM] = pygame.transform.scale(assets[RETA_IMAGEM], (WIDTH, HEIGHT))
+
     assets[MOTO] = pygame.image.load(os.path.join(IMG_DIR, 'moto.png')).convert_alpha()
     assets[MOTO] = pygame.transform.scale(assets['moto_img'], (MOTO_WIDTH, MOTO_HEIGHT))
 
@@ -194,7 +198,6 @@ def init_screen(screen, assets):
     # Carrega o fundo da tela inicial
     background = assets[T_INI]
     background = pygame.transform.scale(assets[T_INI], (WIDTH, HEIGHT))
-
     background_rect = background.get_rect()
   
     transparencia = pygame.Surface((WIDTH, HEIGHT))
@@ -266,18 +269,27 @@ def init_screen(screen, assets):
                 pygame.display.flip()
 
         if state == TELA_OLHO:
-                for i in range(255):
-                    background = assets[B_RETA]
+                i = 255
+                while i > 0:
+                    texto1 = font.render("Esta tela é apenas para os seus olhos", True, WHITE)
+                    texto1.set_alpha(i)
+                    texto1_rect = texto1.get_rect()
+                    texto1_rect.center = (WIDTH / 2, HEIGHT/2)
+
+                    background = assets[RETA_IMAGEM]
+                    background_rect = background.get_rect()
                     
                     transparencia = pygame.Surface((WIDTH, HEIGHT))
-                    transparencia.set_alpha(i)
+                    transparencia.set_alpha(i + 40)
                     transparencia.fill(BLACK)
 
                     screen.blit(background, background_rect)
                     screen.blit(transparencia, (0,0))
+                    screen.blit(texto1, (texto1_rect))
 
                     pygame.display.flip()
-                    time.sleep(0.001)
+                    time.sleep(0.018)
+                    i -= 1
 
                 
                 state = RETA
