@@ -47,6 +47,46 @@ class Grama(pygame.sprite.Sprite):
         self.rect.x = 0
         self.rect.y = 0
 
+class Informacao(pygame.sprite.Sprite):
+    def __init__(self, assets, info, posicao):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = assets[info]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.center = posicao
+        
+
+
+def info(assets, modulo, dicas):
+    sorteadas = []
+    infos = pygame.sprite.Group()
+
+    posicoes = [CANTO_INFERIOR_E, CANTO_INFERIOR_D, CANTO_SUPERIOR]
+    p_sort = []
+
+    qtd = random.randint(1, 3)
+    escolha = random.choice(dicas)
+
+    posicao = random.choice(posicoes)
+    p_sort.append(posicao)
+    dica = Informacao(assets, escolha, posicao)
+    infos.add(dica)
+    
+    for _ in range(qtd - 1):
+        while escolha not in sorteadas:
+            escolha = random.choice(dicas)
+            sorteadas.append(escolha) 
+        while posicao not in p_sort:
+            posicao = random.choice(posicoes)
+            p_sort.append(posicao)
+
+        dica = Informacao(assets, escolha, posicao)
+        infos.add(dica)  
+        
+    return infos
+            
+            
 
 
 '''

@@ -25,6 +25,7 @@ state = init_screen(window, assets)
 
 all_sprites = pygame.sprite.Group()
 paredes = pygame.sprite.Group()
+infos = pygame.sprite.Group()
 groups = {}
 groups['all_sprites'] = all_sprites
 groups['paredes'] = paredes
@@ -40,12 +41,12 @@ paredes.add(g)
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
 retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
 
-dicas= [HIDRANTE, RETO, PROIBIDO, ANIMAL, CARAMELO, ARVORE]
+dicas = [HIDRANTE, PLACA_RETO, PLACA_PROIBIDO, PLACA_ANIMAL, CARAMELO, ARVORE]
 modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
 modulo= 0
-escolha=0
+escolha= 0
 ressorteia= True
-decisao=False
+decisao= False
 colisao = 0
 
 tempo = 0
@@ -107,21 +108,20 @@ while state != FIM:
         player.speedx=0
 
         paredes.empty()
+        infos.empty()
         #state_i = (state_i + 1) % len(states)
         #state = states[state_i]
         
         anterior = state
         while anterior == state:
             state = random.choice(states)
-
-
-        print('TROCA')
-        print(state)
         
+    
         escolha+=1
       
         g = Grama(assets, state)
         paredes.add(g)
+        infos = info(assets, modulo, dicas)
         
 
     #passa pra reta
@@ -186,13 +186,6 @@ while state != FIM:
         window.blit(assets[B_TRES], (0, 0))
 
     
-    
-   
-    
-    paredes.draw(window)
-    all_sprites.draw(window)
-
-
     if modulo==POLICIA: # and state in retas:
         if state in retas:
             window.blit(assets[POLICIA],(CANTO_SUPERIOR))
@@ -226,6 +219,10 @@ while state != FIM:
             ressorteia=True
             decisao=False
 
+    paredes.draw(window)
+    infos.draw(window)
+    all_sprites.draw(window)
+
     if state not in [INIT, TUTORIAL, TELA_INICIO, TELA_OLHO]:
         
         tempo += 1
@@ -235,6 +232,7 @@ while state != FIM:
         
         if tempo_atual == 0:
             state = FIM
+
 
     pygame.display.update()
 

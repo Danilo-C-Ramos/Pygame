@@ -43,12 +43,11 @@ ARVORE = 'arvore_img'
 BUEIRO = 'bueiro_img'
 CARAMELO = 'caramelo_img'
 PLACA_DE_PARE = 'placa_de_pare_img'
+PLACA_RETO = 'placa_reto_img'
+PLACA_ANIMAL = 'placa_animal_img'
+PLACA_PROIBIDO = 'placa_proibido_img'
 HIDRANTE = 'hidrante_img'
-PARE = 'placa_pare_img'
 JOIA = 'joia_img'
-PROIBIDO = 'placa_proibido_img'
-RETO = 'placa_reto_img'
-ANIMAL = 'placa_animal_img'
 POLICIA = 'policia_img'
 BUEIRO = 'bueiro_img'
 OUTDOOR_INSPER = 'outdoor_insper_img'
@@ -144,17 +143,17 @@ def load_assets():
     assets[HIDRANTE] = pygame.image.load(os.path.join(IMG_DIR, 'hidrante.png')).convert_alpha()
     assets[HIDRANTE] = pygame.transform.scale(assets[HIDRANTE], (MOTO_WIDTH, MOTO_HEIGHT))
 
-    assets[PARE] = pygame.image.load(os.path.join(IMG_DIR, 'pare.png')).convert_alpha()
-    assets[PARE] = pygame.transform.scale(assets[PARE], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[PLACA_DE_PARE] = pygame.image.load(os.path.join(IMG_DIR, 'pare.png')).convert_alpha()
+    assets[PLACA_DE_PARE] = pygame.transform.scale(assets[PLACA_DE_PARE], (MOTO_WIDTH, MOTO_HEIGHT))
 
-    assets[PARE] = pygame.image.load(os.path.join(IMG_DIR, 'pare.png')).convert_alpha()
-    assets[PARE] = pygame.transform.scale(assets[PARE], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[PLACA_RETO] = pygame.image.load(os.path.join(IMG_DIR, 'reto.png')).convert_alpha()
+    assets[PLACA_RETO] = pygame.transform.scale(assets[PLACA_DE_PARE], (MOTO_WIDTH, MOTO_HEIGHT))
 
-    assets[PROIBIDO] = pygame.image.load(os.path.join(IMG_DIR, 'proibido.png')).convert_alpha()
-    assets[PROIBIDO] = pygame.transform.scale(assets[PROIBIDO], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[PLACA_PROIBIDO] = pygame.image.load(os.path.join(IMG_DIR, 'proibido.png')).convert_alpha()
+    assets[PLACA_PROIBIDO] = pygame.transform.scale(assets[PLACA_PROIBIDO], (MOTO_WIDTH, MOTO_HEIGHT))
 
-    assets[ANIMAL] = pygame.image.load(os.path.join(IMG_DIR, 'animal.png')).convert_alpha()
-    assets[ANIMAL] = pygame.transform.scale(assets[ANIMAL], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[PLACA_ANIMAL] = pygame.image.load(os.path.join(IMG_DIR, 'animal.png')).convert_alpha()
+    assets[PLACA_ANIMAL] = pygame.transform.scale(assets[PLACA_ANIMAL], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[POLICIA] = pygame.image.load(os.path.join(IMG_DIR, 'policia.png')).convert_alpha()
     assets[POLICIA] = pygame.transform.scale(assets[POLICIA], (MOTO_WIDTH, MOTO_HEIGHT))
