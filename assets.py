@@ -52,6 +52,8 @@ POLICIA = 'policia_img'
 BUEIRO = 'bueiro_img'
 OUTDOOR_INSPER = 'outdoor_insper_img'
 OUTDOOR_ESPM = 'outdoor_espm_img'
+CASA = 'casa_img'
+PINGUIM = 'pinguim_img'
 
 TELA_VITORIA = 'tela_vitoria_img'
 TELA_DERROTA = 'tela_derrota_img'
@@ -63,6 +65,8 @@ def load_assets():
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR,"background.png")).convert() # Os backgrounds devem mudar conforme o jogador muda de tela
     assets[RETA_IMAGEM] = pygame.image.load(os.path.join(IMG_DIR,"reta_imagem.png")).convert()
     assets[RETA_IMAGEM] = pygame.transform.scale(assets[RETA_IMAGEM], (WIDTH, HEIGHT))
+    assets[ULTIMA_TELA] = pygame.image.load(os.path.join(IMG_DIR,"ultima_tela.png")).convert()
+    assets[ULTIMA_TELA] = pygame.transform.scale(assets[ULTIMA_TELA], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[MOTO] = pygame.image.load(os.path.join(IMG_DIR, 'moto.png')).convert_alpha()
     assets[MOTO] = pygame.transform.scale(assets['moto_img'], (MOTO_WIDTH, MOTO_HEIGHT))
@@ -170,6 +174,12 @@ def load_assets():
     assets[JOIA] = pygame.image.load(os.path.join(IMG_DIR, 'joia.png')).convert_alpha()
     assets[JOIA] = pygame.transform.scale(assets[JOIA], (MOTO_WIDTH, MOTO_HEIGHT))
 
+    assets[PINGUIM] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim.png')).convert_alpha()
+    assets[PINGUIM] = pygame.transform.scale(assets[PINGUIM], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[CASA] = pygame.image.load(os.path.join(IMG_DIR, 'casa.png')).convert_alpha()
+    assets[CASA] = pygame.transform.scale(assets[CASA], (MOTO_WIDTH, MOTO_HEIGHT))
+
     assets[OUTDOOR_INSPER] = pygame.image.load(os.path.join(IMG_DIR, 'outdoor_insper.png')).convert_alpha()
     assets[OUTDOOR_INSPER] = pygame.transform.scale(assets[OUTDOOR_INSPER], (MOTO_WIDTH, MOTO_HEIGHT))
 
@@ -180,33 +190,10 @@ def load_assets():
     assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'pixeled.ttf'), 60)
     assets[TIMER_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'ds-digi.ttf'), 40)
 
-    assets[TELA_VITORIA] = pygame.image.load(os.path.join(IMG_DIR, 'tela_vitoria.png')).convert_alpha()
-    assets[TELA_VITORIA] = pygame.transform.scale(assets[TELA_VITORIA], (WIDTH, HEIGHT))
-
-    assets[TELA_DERROTA] = pygame.image.load(os.path.join(IMG_DIR, 'tela_derrota.png')).convert_alpha()
-    assets[TELA_DERROTA] = pygame.transform.scale(assets[TELA_DERROTA], (WIDTH, HEIGHT))
-
-    assets[TELA_PRESO] = pygame.image.load(os.path.join(IMG_DIR, 'tela_preso.png')).convert_alpha()
-    assets[TELA_PRESO] = pygame.transform.scale(assets[TELA_PRESO], (WIDTH, HEIGHT))
 
     pygame.mixer.music.load(os.path.join(SND_DIR, 'pizzatron_3000.mp3'))
     pygame.mixer.music.set_volume(0.4)
 
-    '''
-    assets[ARVORE] = pygame.image.load(os.path.join(IMG_DIR, "Arvore.png")).convert()
-    assets[BUEIRO] = pygame.image.load(os.path.join(IMG_DIR, "Bueiro.png")).convert()
-    assets[CACHORRO] = pygame.image.load(os.path.join(IMG_DIR, "Cachorro.png")).convert()
-    assets[CARRO] = pygame.image.load(os.path.join())
-    assets[CARRO] = pygame.transform.scale(assets['carro_img'], (CARRO_WIDTH, CARRO_HEIGHT))
-    
-    #figuras de teste
-    assets[PLACA_DE_PARE]=pygame.draw.rect(RED, 10, 10)
-    assets[ARVORE]=pygame.draw.rect(GREEN, 10, 10)
-    assets[BUEIRO]=pygame.draw.rect(BLACK, 10, 10)
-    assets[CACHORRO]=pygame.draw.rect(WHITE, 10, 10)
-    assets[CARRO]=pygame.draw.rect(YELLOW, 10, 10)
-    '''
-    
     return assets
 
 def init_screen(screen, assets):
@@ -351,9 +338,6 @@ def end_screen(assets, state):
     if state == FIM_D:
           background = assets[ULTIMA_TELA]
           nome = assets[INIT_FONT].render('VOCÊS PERDERAM!', True, RED)
-    if state == FIM_P:
-          background = assets[ULTIMA_TELA]
-          nome = assets[INIT_FONT].render('VOCÊ ESTÁ PRESO!', True, RED)
 
      
 

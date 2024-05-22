@@ -55,6 +55,14 @@ class Informacao(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.center = posicao
+
+class Entrega(pygame.sprite.Sprite):
+    def __init__(self, assets, info, posicao):
+         
+        self.image = assets[info]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.center = posicao
         
 
 

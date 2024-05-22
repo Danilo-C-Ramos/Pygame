@@ -42,14 +42,18 @@ paredes.add(g)
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
 retas = [RETA, RETA, RETA_D, RETA_E]
 
-dicas = [HIDRANTE,PLACA_DE_PARE, PLACA_RETO, PLACA_PROIBIDO, PLACA_ANIMAL, CARAMELO, ARVORE, JOIA, CASA, PINGUIM, CARRO_ESTACIONADO, BUEIRO]
-modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
+dicas = [HIDRANTE,PLACA_DE_PARE, PLACA_RETO, PLACA_PROIBIDO, PLACA_ANIMAL, CARAMELO, ARVORE, JOIA, PINGUIM, CARRO_ESTACIONADO, BUEIRO, IDOSO]
+modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA, CAVALO, CASA]
 modulo= 0
 decisao_n = 0
 ressorteia= True
 decisao= False
 colisao = 0
 
+acertos = 0
+total_acertos = 2
+max_erros = 1
+erros = 0
 tempo = 0
 anterior = 'banana'
 
@@ -103,7 +107,15 @@ while state != FIM:
         
     #passa pra decisao
     if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and decisao: #and (state == RETA or state == RETA_E or state == RETA_D):
-        
+        if player.rect.bottom <= 0:
+            decidiu = RETO
+
+        elif player.rect.left > WIDTH:
+            decidiu = DIREITA
+
+        elif player.rect.right < 0:
+            decidiu = ESQUERDA
+
         time.sleep(0.25)
         player.rect.centerx = WIDTH / 2
         player.rect.bottom = HEIGHT - 10
@@ -118,13 +130,17 @@ while state != FIM:
         while anterior == state:
             state = random.choice(states)
         
-    
-        
-      
         g = Grama(assets, state)
         paredes.add(g)
         decisao_n += 1
-        infos = info(assets, modulo, dicas, decisao_n)
+        infos, certa = info(assets, modulo, dicas, decisao_n, state)
+
+        if decidiu == certa:
+            acertos += 1
+        else:
+            tempo += 600
+            erros += 1
+
         
         
 
@@ -192,7 +208,14 @@ while state != FIM:
     elif state == 7:
         window.blit(assets[B_TRES], (0, 0))
 
-    paredes.draw(window)
+    if acertos == total_acertos:
+        state = FIM_V
+        end_screen()
+    elif erros == max_erros:
+        state = FIM_D
+        end_screen()
+    
+        paredes.draw(window)
 
     if modulo==POLICIA: # and state in retas:
         if state in retas:
