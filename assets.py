@@ -54,6 +54,10 @@ BUEIRO = 'bueiro_img'
 OUTDOOR_INSPER = 'outdoor_insper_img'
 OUTDOOR_ESPM = 'outdoor_espm_img'
 
+TELA_VITORIA = 'tela_vitoria_img'
+TELA_DERROTA = 'tela_derrota_img'
+TELA_PRESO = 'tela_preso_img'
+
 def load_assets():
     assets = {}
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR,"background.png")).convert() # Os backgrounds devem mudar conforme o jogador muda de tela
@@ -173,6 +177,15 @@ def load_assets():
 
     assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'pixeled.ttf'), 60)
     assets[TIMER_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'ds-digi.ttf'), 40)
+
+    assets[TELA_VITORIA] = pygame.image.load(os.path.join(IMG_DIR, 'tela_vitoria.png')).convert_alpha()
+    assets[TELA_VITORIA] = pygame.transform.scale(assets[TELA_VITORIA], (WIDTH, HEIGHT))
+
+    assets[TELA_DERROTA] = pygame.image.load(os.path.join(IMG_DIR, 'tela_derrota.png')).convert_alpha()
+    assets[TELA_DERROTA] = pygame.transform.scale(assets[TELA_DERROTA], (WIDTH, HEIGHT))
+
+    assets[TELA_PRESO] = pygame.image.load(os.path.join(IMG_DIR, 'tela_preso.png')).convert_alpha()
+    assets[TELA_PRESO] = pygame.transform.scale(assets[TELA_PRESO], (WIDTH, HEIGHT))
 
 
     '''
@@ -326,5 +339,11 @@ def timer(screen, assets, tempo):
     screen.blit(digitos, (X_TIMER,Y_TIMER))
     return 
 
+def end_screen(assets, state):
+     
+     if state == FIM_V:
+          background = assets[TELA_VITORIA]
+
+     
 
 
