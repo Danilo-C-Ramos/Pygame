@@ -167,7 +167,7 @@ def info(assets, modulo, dicas, n, mapa, m_anterior):
                 if modulo == OUTDOOR_INSPER:
                     if mapa in P_RETO:
                         certa = RETO
-                    elif mapa in P_DIRETIA:
+                    elif mapa in P_DIREITA:
                         certa = DIREITA
                     else:
                         certa = ESQUERDA
@@ -218,7 +218,7 @@ def info(assets, modulo, dicas, n, mapa, m_anterior):
                 if modulo == OUTDOOR_INSPER:
                     if mapa in P_RETO:
                         certa = RETO
-                    elif mapa in P_DIRETIA:
+                    elif mapa in P_DIREITA:
                         certa = DIREITA
                     else:
                         certa = ESQUERDA
