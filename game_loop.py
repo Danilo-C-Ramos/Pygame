@@ -108,7 +108,7 @@ def game_screen(window):
                 state = random.choice(states)
             
             infos, certa = info(assets, modulo, dicas, decisao_n, state, reta_anterior)
-            print(certa)
+            
 
             g = Grama(assets, state)
             paredes.add(g)
@@ -120,25 +120,23 @@ def game_screen(window):
         elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and ressorteia: #and state != RETA:
             if player.rect.bottom <= 0:
                 decidiu = RETO
-                print(decidiu)
+                
 
             elif player.rect.left > WIDTH:
                 decidiu = DIREITA
-                print(decidiu)
+                
 
             elif player.rect.right < 0:
                 decidiu = ESQUERDA
-                print(decidiu)
+                
 
             if decidiu == certa:
                 acertos += 1
-                print('acertou', acertos)
+                
             elif decidiu != certa:
                 tempo += 600
                 erros += 1
-                print('errou', erros)
-
-
+                
 
             time.sleep(0.25)
             player.speedx= 0
@@ -156,7 +154,6 @@ def game_screen(window):
             paredes.add(g)
 
             modulo = random.choice(modulos)
-            print(modulo)
             ressorteia=False
             decisao=True
         
@@ -226,9 +223,6 @@ def game_screen(window):
             infos.empty()
             all_sprites.empty()
             state = end_screen(window, assets, state)
-
-
+            
         pygame.display.update()
         
-
-        return
