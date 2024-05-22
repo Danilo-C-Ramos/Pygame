@@ -12,6 +12,8 @@ INIT_FONT = 'fonte_inicio'
 TIMER_FONT = 'fonte_timer'
 FUNDO_OLHO = 'fundi_olho_img'
 
+TUTORIAL = 'tutorial_img'
+
 MOTO = 'moto_img'
 MOTO_ESQUERDA = 'moto_esquerda_img'
 MOTO_DIREITA = 'moto_direita_img'
@@ -69,6 +71,8 @@ def load_assets():
     assets[FUNDO_OLHO] = pygame.transform.scale(assets[FUNDO_OLHO], (WIDTH, HEIGHT))
     assets[ULTIMA_TELA] = pygame.image.load(os.path.join(IMG_DIR,"ultima_tela.png")).convert()
     assets[ULTIMA_TELA] = pygame.transform.scale(assets[ULTIMA_TELA], (WIDTH, HEIGHT))
+    assets[TUTORIAL] = pygame.image.load(os.path.join(IMG_DIR,"tutorial.png")).convert()
+    assets[TUTORIAL] = pygame.transform.scale(assets[TUTORIAL], (WIDTH, HEIGHT))
 
     assets[MOTO] = pygame.image.load(os.path.join(IMG_DIR, 'moto.png')).convert_alpha()
     assets[MOTO] = pygame.transform.scale(assets['moto_img'], (MOTO_WIDTH, MOTO_HEIGHT))
@@ -277,10 +281,19 @@ def init_screen(screen, assets):
             pygame.display.flip()
 
         if state == TUTORIAL:
+                tempo = pygame.time.get_ticks() / 1000.0
+                alpha = (max_alpha - min_alpha) / 2 * (math.sin(pulso * tempo) + 1) + min_alpha
+                texto1.set_alpha(alpha)
+
+                screen.blit(background, background_rect)
+                screen.blit(transparencia, (0, 0))
+
+                
                 screen.fill(BLACK)
-                background = assets[B_RETA_E]
+                background = assets[TUTORIAL]
                 background_rect = background.get_rect()
                 screen.blit(background, background_rect)
+                screen.blit(texto1, texto1_rect)
                 pygame.display.flip()
 
         if state == TELA_OLHO:

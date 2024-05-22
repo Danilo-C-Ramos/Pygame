@@ -126,7 +126,7 @@ while state != FIM:
             state = random.choice(states)
         
 
-        infos, certa = info(assets, modulo, dicas, decisao_n, state)
+        infos, certa = info(assets, modulo, dicas, decisao_n, state, reta_anterior)
         print(certa)
 
 
@@ -175,7 +175,7 @@ while state != FIM:
         
         state = random.choice(retas)
         escolha=0
-        anterior = 'banana'
+        reta_anterior = state
 
         g = Grama(assets, state)
         paredes.add(g)
