@@ -62,10 +62,10 @@ def info(assets, modulo, dicas):
     sorteadas = []
     infos = pygame.sprite.Group()
 
-    posicoes = [CANTO_INFERIOR_E, CANTO_INFERIOR_D, CANTO_SUPERIOR]
+    
     
     p_sort = []
-    qtd = random.randint(1, 3)
+    qtd = random.randint(2, 5)
    
 
     escolha = random.choice(dicas)

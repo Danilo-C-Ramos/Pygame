@@ -39,7 +39,7 @@ g = Grama(assets, state)
 paredes.add(g)
 
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
-retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
+retas = [RETA, RETA, RETA_D, RETA_E]
 
 dicas = [HIDRANTE,PLACA_DE_PARE, PLACA_RETO, PLACA_PROIBIDO, PLACA_ANIMAL, CARAMELO, ARVORE]
 modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
@@ -127,11 +127,13 @@ while state != FIM:
     #passa pra reta
     elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and ressorteia: #and state != RETA:
         
+        
         time.sleep(0.25)
         player.speedx= 0
         player.rect.centerx = WIDTH / 2
         player.rect.bottom = HEIGHT - 10
         
+        infos.empty()
         paredes.empty()
         #state_i = (state_i + 1) % len(states)
         #state = states[state_i]
@@ -146,6 +148,7 @@ while state != FIM:
         modulo = random.choice(modulos)
         ressorteia=False
         decisao=True
+    
     player.update()
 
     
@@ -185,12 +188,12 @@ while state != FIM:
     elif state == 7:
         window.blit(assets[B_TRES], (0, 0))
 
-    
+    paredes.draw(window)
+
     if modulo==POLICIA: # and state in retas:
         if state in retas:
             window.blit(assets[POLICIA],(CANTO_SUPERIOR))
-        #print('UÉ')
-        
+    
         ressorteia=False        
         decisao=True
         if escolha==2: #basicamente 3
@@ -219,7 +222,7 @@ while state != FIM:
             ressorteia=True
             decisao=False
 
-    paredes.draw(window)
+    
     infos.draw(window)
     all_sprites.draw(window)
 
