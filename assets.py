@@ -3,6 +3,7 @@ import os
 from config import *
 from assets import *
 import math
+import time
 
 
 BACKGROUND = 'background'
@@ -216,6 +217,8 @@ def init_screen(screen, assets):
     clock = pygame.time.Clock()
 
     running = True
+    state = TELA_INICIO
+
     while running:
 
         # Ajusta a velocidade do jogo.
@@ -228,54 +231,78 @@ def init_screen(screen, assets):
                 state = QUIT
                 running = False
 
-            if event.type == pygame.KEYUP:
+            if event.type == pygame.KEYUP and state == TUTORIAL:
+                print('indo para a tela preta')
+                state = TELA_OLHO
+                background = assets[B_RETA_D]
+
+            if event.type == pygame.KEYUP and state != TUTORIAL and state != TELA_OLHO:
+                print('tutorial')
+                state = TUTORIAL
+            
+
+        if state == TELA_INICIO:
+            #Efeito de piscar na tela:
+            tempo = pygame.time.get_ticks() / 1000.0
+            alpha = (max_alpha - min_alpha) / 2 * (math.sin(pulso * tempo) + 1) + min_alpha
+            texto1.set_alpha(alpha)
+
+            # A cada loop, redesenha o fundo e os sprites
+            screen.fill(BLACK)
+            screen.blit(background, background_rect)
+            screen.blit(transparencia, (0, 0))
+
+            screen.blit(texto1, texto1_rect)
+            screen.blit(nome, nome_rect)
+
+            # Depois de desenhar tudo, inverte o display.
+            pygame.display.flip()
+
+        if state == TUTORIAL:
+                screen.fill(BLACK)
+                background = assets[B_RETA_E]
+                background_rect = background.get_rect()
+                screen.blit(background, background_rect)
+                pygame.display.flip()
+
+        if state == TELA_OLHO:
+                for i in range(255):
+                    background = assets[B_RETA]
+                    
+                    transparencia = pygame.Surface((WIDTH, HEIGHT))
+                    transparencia.set_alpha(i)
+                    transparencia.fill(BLACK)
+
+                    screen.blit(background, background_rect)
+                    screen.blit(transparencia, (0,0))
+
+                    pygame.display.flip()
+                    time.sleep(0.001)
+
+                
                 state = RETA
                 running = False
-
-
-        #Efeito de piscar na tela:
-        time = pygame.time.get_ticks() / 1000.0
-        alpha = (max_alpha - min_alpha) / 2 * (math.sin(pulso * time) + 1) + min_alpha
-        texto1.set_alpha(alpha)
-
-        # A cada loop, redesenha o fundo e os sprites
-        screen.fill(BLACK)
-        screen.blit(background, background_rect)
-        screen.blit(transparencia, (0, 0))
-
-        screen.blit(texto1, texto1_rect)
-        screen.blit(nome, nome_rect)
-
-        # Depois de desenhar tudo, inverte o display.
-        pygame.display.flip()
 
     return state
 
 
 def timer(screen, assets, tempo):
-    
     minutos = tempo // 60
     segundos = tempo % 60
 
-
-
     fundo_digitos = assets[TIMER_FONT].render(" 8:88", True, GRAY)
     fundo_digitos.set_alpha(100)
-    fundo_digitos_rect = fundo_digitos.get_rect()
-    
     
     digitos = assets[TIMER_FONT].render(f" {int(minutos)}:{int(segundos):02}", True, YELLOW)
     digitos_rect = digitos.get_rect()
-    digitos_rect.center = (60, 60)
+    digitos_rect.center = (X_TIMER, Y_TIMER)
 
-    
     sobra = 15
     fundo_rect = pygame.Rect(
         X_TIMER - sobra, Y_TIMER - sobra,
         X_TIMER + digitos_rect.width - sobra, Y_TIMER + sobra,
                    )
     
-
     # Desenha o retângulo atrás do texto do timer
     pygame.draw.rect(screen, GRAY, fundo_rect)
     

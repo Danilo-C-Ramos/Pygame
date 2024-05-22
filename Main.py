@@ -23,9 +23,6 @@ font = pygame.font.SysFont(None, 55)
 
 state = init_screen(window, assets)
 
-
-
-
 all_sprites = pygame.sprite.Group()
 paredes = pygame.sprite.Group()
 groups = {}
@@ -37,25 +34,22 @@ keys_down = {}
 player = Moto(assets)
 all_sprites.add(player)
 
-
 g = Grama(assets, state)
 paredes.add(g)
+
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
 retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
 
 dicas= [HIDRANTE, RETO, PROIBIDO, ANIMAL, CARAMELO, ARVORE]
 modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
 modulo= 0
-
-
-#vertices = [(0, 0), (0, 0), (0, HEIGHT), (0, HEIGHT)]
-
-#quadrado = pygame.draw.polygon(window, RED, vertices)
+colisao = 0
 
 tempo = 0
 
 # ======== Loop Principal ========
 while state != FIM:
+    
     clock.tick(FPS)
   
     for event in pygame.event.get():
@@ -63,7 +57,6 @@ while state != FIM:
             state = FIM
         if event.type == pygame.KEYDOWN:
             keys_down[event.key] = True
-            
             #if event.key == pygame.K_w and event.key == pygame.K_a:
                 #player.speedx = -3.53
                 #player.speedy = -3.53
@@ -159,7 +152,7 @@ while state != FIM:
            player.speedx = 0
            player.rect.right = WIDTH
         
-        tempo += 2
+        tempo += 1
 
 
     if state == 1:
@@ -195,15 +188,15 @@ while state != FIM:
         #print('festa')
         window.blit(assets[OUTDOOR_ESPM],(10,10))
 
+    if state not in [INIT, TUTORIAL, TELA_INICIO,TELA_OLHO]:
+        
+        tempo += 1
+        tempo_atual = END_TIME - (tempo / FPS)
 
-    time = pygame.time.get_ticks() / 1000.0
-
-    tempo_atual = END_TIME - time
-
-    timer(window, assets, tempo_atual)
-    
-    if time == 0:
-        state = FIM
+        timer(window, assets, tempo_atual)
+        
+        if tempo_atual == 0:
+            state = FIM
 
     pygame.display.update()
 
