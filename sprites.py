@@ -58,12 +58,10 @@ class Informacao(pygame.sprite.Sprite):
         
 
 
-def info(assets, modulo, dicas):
+def info(assets, modulo, dicas, n, mapa):
     sorteadas = []
     infos = pygame.sprite.Group()
 
-    
-    
     p_sort = []
     qtd = random.randint(2, 5)
    
@@ -75,7 +73,7 @@ def info(assets, modulo, dicas):
     sorteadas.append(escolha)
     
     
-    dica = Informacao(assets, escolha, posicao)
+    dica = Informacao(assets, escolha, posicao, modulo)
     infos.add(dica)
 
     for _ in range(qtd - 1):
@@ -95,7 +93,79 @@ def info(assets, modulo, dicas):
         dica = Informacao(assets, escolha, posicao)
         infos.add(dica)  
         
-    return infos
+    if n == 1:
+        if modulo == OUTDOOR_ESPM or modulo == OUTDOOR_INSPER:
+            if CARAMELO in sorteadas and IDOSO in sorteadas and mapa in P_DIREITA:
+                certa = DIREITA
+            elif JOIA in sorteadas and BUEIRO in sorteadas and mapa in P_RETA:
+                certa = RETO
+            else:
+                certa = ESQUERDA
+        
+        if modulo == POLICIA:
+            if ARVORE in sorteadas and BUEIRO in sorteadas and mapa in P_ESQUERDA:
+                certa = ESQUERDA
+            elif CARAMELO in sorteadas and HIDRANTE in sorteadas and mapa in P_RETA:
+                certa = RETO
+            else:
+                certa = DIREITA
+        
+        if modulo == CAVALO:
+            if CARAMELO in sorteadas and PLACA_DE_PARE in sorteadas and mapa in P_ESQUERDA:
+                certa = ESQUERDA
+            elif CARRO_ESTACIONADO in sorteadas and ARVORE in sorteadas and mapa in P_DIREITA:
+                certa = DIREITA
+            else:
+                certa = RETO
+        
+        if modulo == OUTDOOR_ESPM or modulo == OUTDOOR_INSPER:
+            if PLACA_DE_PARE in sorteadas and ARVORE in sorteadas and mapa in P_RETO:
+                certa = RETO
+            elif CARRO_ESTACIONADO in sorteadas and BUEIRO in sorteadas and mapa in P_DIREITA:
+                certa = DIREITA
+            else:
+                certa = ESQUERDA
+
+    elif n == 2:
+        if modulo == OUTDOOR_ESPM or modulo == OUTDOOR_INSPER:
+            if PLACA_DE_PARE in sorteadas and ARVORE in sorteadas and mapa in P_RETO:
+                certa = RETO
+            elif CARRO_ESTACIONADO in sorteadas and BUEIRO in sorteadas and mapa in P_DIREITA:
+                certa = DIREITA
+            else:
+                certa = ESQUERDA
+    
+        if modulo == POLICIA:
+            if CARRO_ESTACIONADO in sorteadas and PLACA_DE_PARE in sorteadas and mapa in P_DIREITA:
+                certa = DIREITA
+            elif CARAMELO in sorteadas and JOIA in sorteadas and mapa in P_RETO:
+                certa = RETO
+            else:
+                certa = ESQUERDA
+
+        if modulo == CASA:
+            if CARRO_ESTACIONADO in sorteadas and IDOSO in sorteadas and mapa in P_RETO:
+                certa = RETO
+            elif BUEIRO in sorteadas and ARVORE in sorteadas and mapa in P_DIREITA:
+                certa = DIREITA
+            else:
+                certa = ESQUERDA
+
+    elif n == 3:
+        if modulo == OUTDOOR_ESPM:
+            if PLACA_DE_PARE in sorteadas and mapa in P_ESQUERDA:
+                certa = ESQUERDA
+            elif ARVORE in sorteadas and PLACA_ANIMAL in sorteadas and mapa in P_DIREITA:
+                certa = DIREITA
+            else:
+                certa = RETO
+        if modulo == OUTDOOR_INSPER:
+            if mapa in P_RETO:
+                certa = RETO
+            else:
+                certa = ESQUERDA
+    
+    return infos, certa
             
             
 
