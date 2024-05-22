@@ -427,6 +427,4 @@ def end_screen(screen, assets, state):
             running = False
         
     return state
-     
-
-
+    
