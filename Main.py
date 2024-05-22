@@ -231,12 +231,7 @@ while state != FIM:
     elif state == 7:
         window.blit(assets[B_TRES], (0, 0))
 
-    if acertos == total_acertos:
-        state = FIM_V
-        end_screen(window, assets, state)
-    elif erros == max_erros:
-        state = FIM_D
-        end_screen(window, assets, state)
+    
     
 
     paredes.draw(window)
@@ -300,6 +295,21 @@ while state != FIM:
         if tempo_atual == 0:
             state = FIM_D
             end_screen(window, assets, state)
+
+    if acertos == total_acertos:
+        state = FIM_V
+        paredes.empty()
+        infos.empty()
+        all_sprites.empty()
+        
+        end_screen(window, assets, state)
+    
+    elif erros == max_erros:
+        state = FIM_D
+        paredes.empty()
+        infos.empty()
+        all_sprites.empty()
+        end_screen(window, assets, state)
 
 
     pygame.display.update()

@@ -366,24 +366,11 @@ def end_screen(screen, assets, state):
 
     clock = pygame.time.Clock()
     running = True
-    state = TELA_INICIO
     while running:
         # Ajusta a velocidade do jogo.
         clock.tick(FPS)
 
-        # Processa os eventos (mouse, teclado, botão, etc).
-        for event in pygame.event.get():
-            # Verifica se foi fechado.
-            if event.type == pygame.QUIT:
-                state = QUIT
-                running = False
 
-            if event.type == pygame.KEYUP:
-                running = False
-                state = QUIT
-
-
-        
         if state == FIM_V:       
             venceu = assets[INIT_FONT].render('VOCÊS VENCERAM!', True, RED)
             venceu_rect = venceu.get_rect()
@@ -410,6 +397,18 @@ def end_screen(screen, assets, state):
 
             # Depois de desenhar tudo, inverte o display.
             pygame.display.flip()
+        # Processa os eventos (mouse, teclado, botão, etc).
+        for event in pygame.event.get():
+            # Verifica se foi fechado.
+            if event.type == pygame.QUIT:
+                state = QUIT
+                
+
+            if event.type == pygame.KEYUP:
+                state = QUIT
+
+        if state == QUIT:
+            running = False
     return
      
 
