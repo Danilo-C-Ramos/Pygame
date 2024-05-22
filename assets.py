@@ -68,7 +68,7 @@ def load_assets():
     assets[FUNDO_OLHO] = pygame.image.load(os.path.join(IMG_DIR,"fundo_olho.jpg")).convert()
     assets[FUNDO_OLHO] = pygame.transform.scale(assets[FUNDO_OLHO], (WIDTH, HEIGHT))
     assets[ULTIMA_TELA] = pygame.image.load(os.path.join(IMG_DIR,"ultima_tela.png")).convert()
-    assets[ULTIMA_TELA] = pygame.transform.scale(assets[ULTIMA_TELA], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[ULTIMA_TELA] = pygame.transform.scale(assets[ULTIMA_TELA], (WIDTH, HEIGHT))
 
     assets[MOTO] = pygame.image.load(os.path.join(IMG_DIR, 'moto.png')).convert_alpha()
     assets[MOTO] = pygame.transform.scale(assets['moto_img'], (MOTO_WIDTH, MOTO_HEIGHT))
@@ -150,22 +150,22 @@ def load_assets():
     assets[HIDRANTE] = pygame.transform.scale(assets[HIDRANTE], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[PLACA_DE_PARE] = pygame.image.load(os.path.join(IMG_DIR, 'pare.png')).convert_alpha()
-    assets[PLACA_DE_PARE] = pygame.transform.scale(assets[PLACA_DE_PARE], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[PLACA_DE_PARE] = pygame.transform.scale(assets[PLACA_DE_PARE], (PLACA_WIDTH, PLACA_HEIGHT))
 
     assets[PLACA_RETO] = pygame.image.load(os.path.join(IMG_DIR, 'reto.png')).convert_alpha()
-    assets[PLACA_RETO] = pygame.transform.scale(assets[PLACA_RETO], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[PLACA_RETO] = pygame.transform.scale(assets[PLACA_RETO], (PLACA_WIDTH, PLACA_HEIGHT))
 
     assets[PLACA_PROIBIDO] = pygame.image.load(os.path.join(IMG_DIR, 'proibido.png')).convert_alpha()
     assets[PLACA_PROIBIDO] = pygame.transform.scale(assets[PLACA_PROIBIDO], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[PLACA_ANIMAL] = pygame.image.load(os.path.join(IMG_DIR, 'animal.png')).convert_alpha()
-    assets[PLACA_ANIMAL] = pygame.transform.scale(assets[PLACA_ANIMAL], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[PLACA_ANIMAL] = pygame.transform.scale(assets[PLACA_ANIMAL], (PLACA_WIDTH, PLACA_HEIGHT))
 
     assets[POLICIA] = pygame.image.load(os.path.join(IMG_DIR, 'policia.png')).convert_alpha()
     assets[POLICIA] = pygame.transform.scale(assets[POLICIA], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[BUEIRO] = pygame.image.load(os.path.join(IMG_DIR, 'bueiro.png')).convert_alpha()
-    assets[BUEIRO] = pygame.transform.scale(assets[BUEIRO], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[BUEIRO] = pygame.transform.scale(assets[BUEIRO], (DICA_WIDTH, DICA_HEIGHT))
 
     assets[CARAMELO] = pygame.image.load(os.path.join(IMG_DIR, 'caramelo.png')).convert_alpha()
     assets[CARAMELO] = pygame.transform.scale(assets[CARAMELO], (MOTO_WIDTH, MOTO_HEIGHT))
@@ -177,25 +177,25 @@ def load_assets():
     assets[JOIA] = pygame.transform.scale(assets[JOIA], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[PINGUIM] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim.png')).convert_alpha()
-    assets[PINGUIM] = pygame.transform.scale(assets[PINGUIM], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[PINGUIM] = pygame.transform.scale(assets[PINGUIM], (DICA_WIDTH, DICA_HEIGHT))
 
     assets[CASA] = pygame.image.load(os.path.join(IMG_DIR, 'casa.png')).convert_alpha()
     assets[CASA] = pygame.transform.scale(assets[CASA], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[CARRO_ESTACIONADO] = pygame.image.load(os.path.join(IMG_DIR, 'carro.png')).convert_alpha()
-    assets[CARRO_ESTACIONADO] = pygame.transform.scale(assets[CARRO_ESTACIONADO], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[CARRO_ESTACIONADO] = pygame.transform.scale(assets[CARRO_ESTACIONADO], (DICA_WIDTH, DICA_HEIGHT))
 
     assets[IDOSO] = pygame.image.load(os.path.join(IMG_DIR, 'idoso.png')).convert_alpha()
-    assets[IDOSO] = pygame.transform.scale(assets[IDOSO], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[IDOSO] = pygame.transform.scale(assets[IDOSO], (VO_WIDTH, VO_HEIGHT))
 
     assets[CAVALO] = pygame.image.load(os.path.join(IMG_DIR, 'cavalo.png')).convert_alpha()
     assets[CAVALO] = pygame.transform.scale(assets[CAVALO], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[OUTDOOR_INSPER] = pygame.image.load(os.path.join(IMG_DIR, 'outdoor_insper.png')).convert_alpha()
-    assets[OUTDOOR_INSPER] = pygame.transform.scale(assets[OUTDOOR_INSPER], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[OUTDOOR_INSPER] = pygame.transform.scale(assets[OUTDOOR_INSPER], (MAIOR_WIDTH, MAIOR_HEIGHT))
 
     assets[OUTDOOR_ESPM] = pygame.image.load(os.path.join(IMG_DIR, 'outdoor_espm.png')).convert_alpha()
-    assets[OUTDOOR_ESPM] = pygame.transform.scale(assets[OUTDOOR_ESPM], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[OUTDOOR_ESPM] = pygame.transform.scale(assets[OUTDOOR_ESPM], (MAIOR_WIDTH, MAIOR_HEIGHT))
 
 
     assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'pixeled.ttf'), 60)
@@ -343,6 +343,7 @@ def timer(screen, assets, tempo):
 
 def end_screen(screen, assets, state):
     font = pygame.font.SysFont(None, 40)
+    assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'pixeled.ttf'), 40)
 
     background = assets[ULTIMA_TELA] 
     transparencia = pygame.Surface((WIDTH, HEIGHT))
@@ -370,11 +371,10 @@ def end_screen(screen, assets, state):
         # Ajusta a velocidade do jogo.
         clock.tick(FPS)
 
-
         if state == FIM_V:       
             venceu = assets[INIT_FONT].render('VOCÊS VENCERAM!', True, RED)
             venceu_rect = venceu.get_rect()
-            venceu_rect.center = (WIDTH / 2, HEIGHT/2)
+            venceu_rect.center = (90, HEIGHT/2)
 
             screen.blit(background, (0,0))
             screen.blit(transparencia, (0,0))
@@ -386,8 +386,8 @@ def end_screen(screen, assets, state):
         
         if state == FIM_D:
             perdeu = assets[INIT_FONT].render('VOCÊS PERDERAM!', True, RED)
-            perdeu_rect = venceu.get_rect()
-            perdeu_rect.center = (WIDTH / 2, HEIGHT/2)
+            perdeu_rect = perdeu.get_rect()
+            perdeu_rect.center = (90, HEIGHT/2)
 
             screen.blit(background, (0,0))
             screen.blit(transparencia, (0,0))
@@ -397,19 +397,23 @@ def end_screen(screen, assets, state):
 
             # Depois de desenhar tudo, inverte o display.
             pygame.display.flip()
+        
         # Processa os eventos (mouse, teclado, botão, etc).
         for event in pygame.event.get():
             # Verifica se foi fechado.
             if event.type == pygame.QUIT:
-                state = QUIT
+                time.sleep(1)
+                state = FIM
                 
-
             if event.type == pygame.KEYUP:
-                state = QUIT
+                time.sleep(1)
+                state = FIM
 
-        if state == QUIT:
+
+        if state == FIM:
             running = False
-    return
+        
+    return state
      
 
 

@@ -9,7 +9,6 @@ import time
 pygame.init()
 pygame.mixer.init()
 
-
 # ----- Gera tela principal
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Motinha')
@@ -126,12 +125,10 @@ while state != FIM:
         while anterior == state:
             state = random.choice(states)
         
-        
 
         infos, certa = info(assets, modulo, dicas, decisao_n, state)
         print(certa)
 
-        
 
         g = Grama(assets, state)
         paredes.add(g)
@@ -194,9 +191,6 @@ while state != FIM:
     
     for parede in pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_mask):
         
-
-
-        
         if player.rect.bottom > HEIGHT:
             player.speedy = 0
             player.rect.bottom = HEIGHT
@@ -213,7 +207,7 @@ while state != FIM:
            player.speedx = 0
            player.rect.right = WIDTH
         
-        tempo += 1
+        tempo += 5
 
 
     if state == 1:
@@ -230,9 +224,6 @@ while state != FIM:
         window.blit(assets[B_DOIS_H], (0, 0))
     elif state == 7:
         window.blit(assets[B_TRES], (0, 0))
-
-    
-    
 
     paredes.draw(window)
 
@@ -281,8 +272,8 @@ while state != FIM:
     '''
 
     if state in retas:
-        window.blit(assets[modulo],(CANTO_SUPERIOR))
-    infos.draw(window)
+        window.blit(assets[modulo],(CANTO_MODULO))
+    infos.draw(window)  
     all_sprites.draw(window)
 
     if state not in [INIT, TUTORIAL, TELA_INICIO, TELA_OLHO]:
@@ -292,24 +283,20 @@ while state != FIM:
 
         timer(window, assets, tempo_atual)
         
-        if tempo_atual == 0:
-            state = FIM_D
-            end_screen(window, assets, state)
 
     if acertos == total_acertos:
         state = FIM_V
         paredes.empty()
         infos.empty()
         all_sprites.empty()
-        
-        end_screen(window, assets, state)
+        state = end_screen(window, assets, state)
     
-    elif erros == max_erros:
+    elif erros == max_erros or tempo_atual <= 0:
         state = FIM_D
         paredes.empty()
         infos.empty()
         all_sprites.empty()
-        end_screen(window, assets, state)
+        state = end_screen(window, assets, state)
 
 
     pygame.display.update()
