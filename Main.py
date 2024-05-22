@@ -285,20 +285,20 @@ while state != FIM:
             decisao=False
     '''
 
-    if state in retas:
-        window.blit(assets[modulo],(CANTO_SUPERIOR))
+    #if state in retas:
+    #    window.blit(assets[modulo],(CANTO_SUPERIOR))
     infos.draw(window)
     all_sprites.draw(window)
 
-    if state not in [INIT, TUTORIAL, TELA_INICIO, TELA_OLHO]:
+    #if state not in [INIT, TUTORIAL, TELA_INICIO, TELA_OLHO]:
         
-        tempo += 1
-        tempo_atual = END_TIME - (tempo / FPS)
+    #    tempo += 1
+    #    tempo_atual = END_TIME - (tempo / FPS)
 
-        timer(window, assets, tempo_atual)
+    #    timer(window, assets, tempo_atual)
         
-        if tempo_atual == 0:
-            state = FIM
+    #    if tempo_atual == 0:
+    #        state = FIM
 
 
     pygame.display.update()

@@ -10,7 +10,7 @@ BACKGROUND = 'background'
 T_INI = 'fundo_init_img'
 INIT_FONT = 'fonte_inicio'
 TIMER_FONT = 'fonte_timer'
-RETA_IMAGEM = 'reta_imagem_img'
+FUNDO_OLHO = 'fundi_olho_img'
 
 MOTO = 'moto_img'
 MOTO_ESQUERDA = 'moto_esquerda_img'
@@ -65,8 +65,8 @@ ULTIMA_TELA = 'ultima_tela_img'
 def load_assets():
     assets = {}
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR,"background.png")).convert() # Os backgrounds devem mudar conforme o jogador muda de tela
-    assets[RETA_IMAGEM] = pygame.image.load(os.path.join(IMG_DIR,"reta_imagem.png")).convert()
-    assets[RETA_IMAGEM] = pygame.transform.scale(assets[RETA_IMAGEM], (WIDTH, HEIGHT))
+    assets[FUNDO_OLHO] = pygame.image.load(os.path.join(IMG_DIR,"fundo_olho.jpg")).convert()
+    assets[FUNDO_OLHO] = pygame.transform.scale(assets[FUNDO_OLHO], (WIDTH, HEIGHT))
     assets[ULTIMA_TELA] = pygame.image.load(os.path.join(IMG_DIR,"ultima_tela.png")).convert()
     assets[ULTIMA_TELA] = pygame.transform.scale(assets[ULTIMA_TELA], (MOTO_WIDTH, MOTO_HEIGHT))
 
@@ -291,7 +291,7 @@ def init_screen(screen, assets):
                     texto1_rect = texto1.get_rect()
                     texto1_rect.center = (WIDTH / 2, HEIGHT/2)
 
-                    background = assets[RETA_IMAGEM]
+                    background = assets[FUNDO_OLHO]
                     background_rect = background.get_rect()
                     
                     transparencia = pygame.Surface((WIDTH, HEIGHT))
