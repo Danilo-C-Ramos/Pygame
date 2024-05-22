@@ -189,6 +189,8 @@ def load_assets():
     assets[TELA_PRESO] = pygame.image.load(os.path.join(IMG_DIR, 'tela_preso.png')).convert_alpha()
     assets[TELA_PRESO] = pygame.transform.scale(assets[TELA_PRESO], (WIDTH, HEIGHT))
 
+    pygame.mixer.music.load(os.path.join(SND_DIR, 'pizzatron_3000.mp3'))
+    pygame.mixer.music.set_volume(0.4)
 
     '''
     assets[ARVORE] = pygame.image.load(os.path.join(IMG_DIR, "Arvore.png")).convert()

@@ -9,6 +9,7 @@ import time
 pygame.init()
 pygame.mixer.init()
 
+
 # ----- Gera tela principal
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Motinha')
@@ -41,10 +42,10 @@ paredes.add(g)
 states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
 retas = [RETA, RETA, RETA_D, RETA_E]
 
-dicas = [HIDRANTE,PLACA_DE_PARE, PLACA_RETO, PLACA_PROIBIDO, PLACA_ANIMAL, CARAMELO, ARVORE]
+dicas = [HIDRANTE,PLACA_DE_PARE, PLACA_RETO, PLACA_PROIBIDO, PLACA_ANIMAL, CARAMELO, ARVORE, JOIA, CASA, PINGUIM, CARRO_ESTACIONADO, BUEIRO]
 modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
 modulo= 0
-escolha= 0
+decisao_n = 0
 ressorteia= True
 decisao= False
 colisao = 0
@@ -52,6 +53,7 @@ colisao = 0
 tempo = 0
 anterior = 'banana'
 
+pygame.mixer.music.play(loops = -1)
 # ======== Loop Principal ========
 while state != FIM:
     states = [DOIS_H, DOIS_VD, DOIS_VE, DOIS_H, TRES]
@@ -117,11 +119,13 @@ while state != FIM:
             state = random.choice(states)
         
     
-        escolha+=1
+        
       
         g = Grama(assets, state)
         paredes.add(g)
-        infos = info(assets, modulo, dicas)
+        decisao_n += 1
+        infos = info(assets, modulo, dicas, decisao_n)
+        
         
 
     #passa pra reta
