@@ -57,6 +57,7 @@ OUTDOOR_ESPM = 'outdoor_espm_img'
 TELA_VITORIA = 'tela_vitoria_img'
 TELA_DERROTA = 'tela_derrota_img'
 TELA_PRESO = 'tela_preso_img'
+ULTIMA_TELA = 'ultima_tela_img'
 
 def load_assets():
     assets = {}
@@ -343,8 +344,15 @@ def timer(screen, assets, tempo):
 
 def end_screen(assets, state):
      
-     if state == FIM_V:
-          background = assets[TELA_VITORIA]
+    if state == FIM_V:
+        background = assets[ULTIMA_TELA]
+        nome = assets[INIT_FONT].render('VOCÊS VENCERAM!', True, RED)
+    if state == FIM_D:
+          background = assets[ULTIMA_TELA]
+          nome = assets[INIT_FONT].render('VOCÊS PERDERAM!', True, RED)
+    if state == FIM_P:
+          background = assets[ULTIMA_TELA]
+          nome = assets[INIT_FONT].render('VOCÊ ESTÁ PRESO!', True, RED)
 
      
 
