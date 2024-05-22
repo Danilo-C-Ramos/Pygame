@@ -69,7 +69,7 @@ def info(assets, modulo, dicas):
    
 
     escolha = random.choice(dicas)
-    posicao = random.choice(posicoes)
+    posicao = random.choice(POSICOES)
     
     p_sort.append(posicao)
     sorteadas.append(escolha)
@@ -80,14 +80,14 @@ def info(assets, modulo, dicas):
 
     for _ in range(qtd - 1):
         escolha = random.choice(dicas)
-        posicao = random.choice(posicoes)
+        posicao = random.choice(POSICOES)
 
         while escolha in sorteadas:
            
             escolha = random.choice(dicas)
         
         while posicao in p_sort:
-            posicao = random.choice(posicoes)
+            posicao = random.choice(POSICOES)
         
         p_sort.append(posicao)
         sorteadas.append(escolha)

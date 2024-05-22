@@ -10,6 +10,8 @@ MOTO_HEIGHT = 170
 CARRO_WIDTH = 80
 CARRO_HEIGHT = 120  #Tamanhos aleatorios ate o momento
 
+
+
 #Dados gerais
 WIDTH = 720
 HEIGHT = 720
@@ -20,6 +22,8 @@ Y_TIMER = 60
 CANTO_SUPERIOR = (WIDTH-125, 0)
 CANTO_INFERIOR_E = (125, HEIGHT-80)
 CANTO_INFERIOR_D = (WIDTH-120, HEIGHT-125)
+
+POSICOES = [CANTO_INFERIOR_E, CANTO_INFERIOR_D, CANTO_SUPERIOR]
 
 
 # Define algumas variáveis com as cores básicas
