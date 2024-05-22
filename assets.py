@@ -364,8 +364,6 @@ def end_screen(screen, assets, state):
     texto.set_alpha(alpha)
 
 
-    
-
     clock = pygame.time.Clock()
     running = True
     state = TELA_INICIO
