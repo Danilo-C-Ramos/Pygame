@@ -341,15 +341,20 @@ def timer(screen, assets, tempo):
     screen.blit(digitos, (X_TIMER,Y_TIMER))
     return 
 
-def end_screen(assets, state):
+def end_screen(screen, assets, state):
      
     if state == FIM_V:
         background = assets[ULTIMA_TELA]
         nome = assets[INIT_FONT].render('VOCÊS VENCERAM!', True, RED)
+
+        screen.blit(background, (0,0))
+
     if state == FIM_D:
           background = assets[ULTIMA_TELA]
           nome = assets[INIT_FONT].render('VOCÊS PERDERAM!', True, RED)
 
+    state = FIM
+    return state
      
 
 

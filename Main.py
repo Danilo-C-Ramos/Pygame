@@ -58,6 +58,7 @@ tempo = 0
 anterior = 'banana'
 certa = RETA
 decidiu = DIREITA
+modulo = OUTDOOR_INSPER
 
 pygame.mixer.music.play(loops = -1)
 # ======== Loop Principal ========
@@ -232,10 +233,10 @@ while state != FIM:
 
     if acertos == total_acertos:
         state = FIM_V
-        end_screen()
+        end_screen(assets, state)
     elif erros == max_erros:
         state = FIM_D
-        end_screen()
+        end_screen(assets, state)
     
 
     paredes.draw(window)
@@ -284,7 +285,8 @@ while state != FIM:
             decisao=False
     '''
 
-    
+    if state in retas:
+        window.blit(assets[modulo],(CANTO_SUPERIOR))
     infos.draw(window)
     all_sprites.draw(window)
 
