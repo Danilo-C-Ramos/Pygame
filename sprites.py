@@ -3,7 +3,6 @@ import pygame
 from config import *
 from assets import *
 
-
 class Moto(pygame.sprite.Sprite):
     def __init__(self, assets):
         pygame.sprite.Sprite.__init__(self)

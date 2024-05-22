@@ -5,7 +5,6 @@ from assets import *
 import math
 import time
 
-
 BACKGROUND = 'background'
 T_INI = 'fundo_init_img'
 INIT_FONT = 'fonte_inicio'
@@ -88,20 +87,6 @@ def load_assets():
 
     assets[MOTO_ESQUERDA] = pygame.image.load(os.path.join(IMG_DIR, 'moto_esquerda.png')).convert_alpha()
     assets[MOTO_ESQUERDA] = pygame.transform.scale(assets[MOTO_ESQUERDA], (MOTO_WIDTH, MOTO_HEIGHT))
-
-    '''
-    assets[MOTO_DIAGONAL_DIREITA] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_direita.png')).convert_alpha()
-    assets[MOTO_DIAGONAL_DIREITA] = pygame.transform.scale(assets[MOTO_DIAGONAL_DIREITA], (MOTO_WIDTH, MOTO_HEIGHT))
-
-    assets[MOTO_DIAGONAL_ESQUERDA] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_esquerda.png')).convert_alpha()
-    assets[MOTO_DIAGONAL_ESQUERDA] = pygame.transform.scale(assets[MOTO_DIAGONAL_ESQUERDA], (MOTO_WIDTH, MOTO_HEIGHT))
-
-    assets[MOTO_DIAGONAL_SUDESTE] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_sudeste.png')).convert_alpha()
-    assets[MOTO_DIAGONAL_SUDESTE] = pygame.transform.scale(assets[MOTO_DIAGONAL_SUDESTE], (MOTO_WIDTH, MOTO_HEIGHT))
-
-    assets[MOTO_DIAGONAL_ESQUERDA_BAIXO] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_esquerda_baixo.png')).convert_alpha()
-    assets[MOTO_DIAGONAL_ESQUERDA_BAIXO] = pygame.transform.scale(assets[MOTO_DIAGONAL_ESQUERDA_BAIXO], (MOTO_WIDTH, MOTO_HEIGHT))
-    '''
 
     assets[B_RETA] = pygame.image.load(os.path.join(IMG_DIR, "b_reta.png")).convert()
     assets[B_RETA] = pygame.transform.scale(assets[B_RETA], (WIDTH, HEIGHT))
@@ -259,7 +244,6 @@ def init_screen(screen, assets):
                 background = assets[B_RETA_D]
 
             if event.type == pygame.KEYUP and state != TUTORIAL and state != TELA_OLHO:
-                print('tutorial')
                 state = TUTORIAL
             
 
@@ -318,13 +302,11 @@ def init_screen(screen, assets):
                     pygame.display.flip()
                     time.sleep(0.018)
                     i -= 1
-
                 
                 state = RETA
                 running = False
 
     return state
-
 
 def timer(screen, assets, tempo):
     minutos = tempo // 60
@@ -367,7 +349,6 @@ def end_screen(screen, assets, state):
     texto_rect = texto.get_rect()
     texto_rect.center = (WIDTH / 2, HEIGHT - 100)
 
-
     pulso = 3  # Velocidade da pulsação
     max_alpha = 255  # Transparência máxima
     min_alpha = 20 
@@ -376,7 +357,6 @@ def end_screen(screen, assets, state):
     tempo = pygame.time.get_ticks() / 1000.0
     alpha = (max_alpha - min_alpha) / 2 * (math.sin(pulso * tempo) + 1) + min_alpha
     texto.set_alpha(alpha)
-
 
     clock = pygame.time.Clock()
     running = True
