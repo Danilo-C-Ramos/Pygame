@@ -239,7 +239,6 @@ def init_screen(screen, assets):
                 running = False
 
             if event.type == pygame.KEYUP and state == TUTORIAL:
-                print('indo para a tela preta')
                 state = TELA_OLHO
                 background = assets[B_RETA_D]
 
