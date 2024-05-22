@@ -51,11 +51,13 @@ decisao= False
 colisao = 0
 
 acertos = 0
-total_acertos = 2
-max_erros = 2
+total_acertos = 4
+max_erros = 4
 erros = 0
 tempo = 0
 anterior = 'banana'
+certa = RETA
+decidiu = DIREITA
 
 pygame.mixer.music.play(loops = -1)
 # ======== Loop Principal ========
@@ -107,17 +109,7 @@ while state != FIM:
         
     #passa pra decisao
     if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and decisao: #and (state == RETA or state == RETA_E or state == RETA_D):
-        if player.rect.bottom <= 0:
-            decidiu = RETO
-            print(decidiu)
-
-        elif player.rect.left > WIDTH:
-            decidiu = DIREITA
-            print(decidiu)
-
-        elif player.rect.right < 0:
-            decidiu = ESQUERDA
-            print(decidiu)
+        
 
         time.sleep(0.25)
         player.rect.centerx = WIDTH / 2
@@ -133,26 +125,46 @@ while state != FIM:
         while anterior == state:
             state = random.choice(states)
         
+        
+
+        infos, certa = info(assets, modulo, dicas, decisao_n, state)
+        print(certa)
+
+        
+
         g = Grama(assets, state)
         paredes.add(g)
-        decisao_n += 1
-        infos, certa = info(assets, modulo, dicas, decisao_n, state)
 
-        if decidiu == certa:
+        decisao=False
+        ressorteia=True
+        
+        #decisao_n += 1
+        
+    #passa pra proxima (decide)
+    elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and ressorteia: #and state != RETA:
+        if player.rect.bottom <= 0:
+            decidiu = RETO
+            print(decidiu)
+
+        elif player.rect.left > WIDTH:
+            decidiu = DIREITA
+            print(decidiu)
+
+        elif player.rect.right < 0:
+            decidiu = ESQUERDA
+            print(decidiu)
+
+
+        if decidiu == certa: # and anterior not in retas:
             acertos += 1
-            print(acertos)
-        else:
-            print(erros)
+            print('acertou', acertos)
+        elif decidiu != certa: # and anterior not in retas:
             tempo += 600
             erros += 1
+            print('errou', erros)
 
-        
-        
 
-    #passa pra reta
-    elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and ressorteia: #and state != RETA:
-        
-        
+
         time.sleep(0.25)
         player.speedx= 0
         player.rect.centerx = WIDTH / 2
@@ -171,13 +183,18 @@ while state != FIM:
         paredes.add(g)
 
         modulo = random.choice(modulos)
+        print(modulo)
         ressorteia=False
+        #decisao_n = 0
         decisao=True
     
     player.update()
 
     
     for parede in pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_mask):
+        
+
+
         
         if player.rect.bottom > HEIGHT:
             player.speedy = 0
@@ -220,8 +237,10 @@ while state != FIM:
         state = FIM_D
         end_screen()
     
-        paredes.draw(window)
 
+    paredes.draw(window)
+
+    '''
     if modulo==POLICIA: # and state in retas:
         if state in retas:
             window.blit(assets[POLICIA],(CANTO_SUPERIOR))
@@ -253,6 +272,17 @@ while state != FIM:
         if escolha==3: #basicamente 3
             ressorteia=True
             decisao=False
+    
+    elif modulo==CAVALO: # and state in retas:
+        #print('festa')
+        if state in retas:
+            window.blit(assets[CAVALO],(CANTO_SUPERIOR))
+        ressorteia=False
+        decisao=True
+        if escolha==1: #basicamente 3
+            ressorteia=True
+            decisao=False
+    '''
 
     
     infos.draw(window)

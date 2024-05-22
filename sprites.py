@@ -81,7 +81,7 @@ def info(assets, modulo, dicas, n, mapa):
     sorteadas.append(escolha)
     
     
-    dica = Informacao(assets, escolha, posicao, modulo)
+    dica = Informacao(assets, escolha, posicao)
     infos.add(dica)
 
     for _ in range(qtd - 1):
@@ -101,40 +101,57 @@ def info(assets, modulo, dicas, n, mapa):
         dica = Informacao(assets, escolha, posicao)
         infos.add(dica)  
         
-    if n == 1:
-        if modulo == OUTDOOR_ESPM or modulo == OUTDOOR_INSPER:
-            if CARAMELO in sorteadas and IDOSO in sorteadas and mapa in P_DIREITA:
+    if n == 0:
+        if modulo == OUTDOOR_ESPM:
+            if PLACA_DE_PARE in sorteadas and mapa in P_ESQUERDA:
+                certa = ESQUERDA
+            elif ARVORE in sorteadas and PLACA_ANIMAL in sorteadas and mapa in P_DIREITA:
                 certa = DIREITA
-            elif JOIA in sorteadas and BUEIRO in sorteadas and mapa in P_RETA:
+            elif mapa in P_RETO:
                 certa = RETO
             else:
+                certa = DIREITA
+        if modulo == OUTDOOR_INSPER:
+            if mapa in P_RETO:
+                certa = RETO
+            elif mapa in P_ESQUERDA:
                 certa = ESQUERDA
+            else:
+                certa = RETO
+        
+        
         
         if modulo == POLICIA:
             if ARVORE in sorteadas and BUEIRO in sorteadas and mapa in P_ESQUERDA:
                 certa = ESQUERDA
-            elif CARAMELO in sorteadas and HIDRANTE in sorteadas and mapa in P_RETA:
+            elif CARAMELO in sorteadas and HIDRANTE in sorteadas and mapa in P_RETO:
                 certa = RETO
-            else:
+            elif mapa in P_DIREITA:
                 certa = DIREITA
+            else:
+                certa = RETO
         
         if modulo == CAVALO:
             if CARAMELO in sorteadas and PLACA_DE_PARE in sorteadas and mapa in P_ESQUERDA:
                 certa = ESQUERDA
-            elif CARRO_ESTACIONADO in sorteadas and ARVORE in sorteadas and mapa in P_DIREITA:
+            elif CARRO_ESTACIONADO in sorteadas and ARVORE in sorteadas and mapa in P_RETO:
+                certa = RETO
+            elif mapa in P_DIREITA:
                 certa = DIREITA
             else:
                 certa = RETO
         
-        if modulo == OUTDOOR_ESPM or modulo == OUTDOOR_INSPER:
-            if PLACA_DE_PARE in sorteadas and ARVORE in sorteadas and mapa in P_RETO:
-                certa = RETO
-            elif CARRO_ESTACIONADO in sorteadas and BUEIRO in sorteadas and mapa in P_DIREITA:
+        if modulo == CASA:
+            if CARAMELO in sorteadas and BUEIRO in sorteadas and mapa in P_DIREITA:
                 certa = DIREITA
-            else:
+            elif PLACA_PROIBIDO in sorteadas and HIDRANTE in sorteadas and mapa in P_RETO:
+                certa = RETO
+            elif mapa in P_ESQUERDA:
                 certa = ESQUERDA
-
-    elif n == 2:
+            else:
+                certa = DIREITA
+    '''
+    elif n == 1:
         if modulo == OUTDOOR_ESPM or modulo == OUTDOOR_INSPER:
             if PLACA_DE_PARE in sorteadas and ARVORE in sorteadas and mapa in P_RETO:
                 certa = RETO
@@ -159,7 +176,15 @@ def info(assets, modulo, dicas, n, mapa):
             else:
                 certa = ESQUERDA
 
-    elif n == 3:
+        if modulo == CAVALO:
+            if CARAMELO in sorteadas and PLACA_DE_PARE in sorteadas and mapa in P_ESQUERDA:
+                certa = ESQUERDA
+            elif CARRO_ESTACIONADO in sorteadas and ARVORE in sorteadas and mapa in P_RETO:
+                certa = RETO
+            else:
+                certa = DIREITA
+
+    elif n == 2:
         if modulo == OUTDOOR_ESPM:
             if PLACA_DE_PARE in sorteadas and mapa in P_ESQUERDA:
                 certa = ESQUERDA
@@ -172,38 +197,32 @@ def info(assets, modulo, dicas, n, mapa):
                 certa = RETO
             else:
                 certa = ESQUERDA
+
+
+        if modulo == POLICIA:
+            if CARRO_ESTACIONADO in sorteadas and PLACA_DE_PARE in sorteadas and mapa in P_DIREITA:
+                certa = DIREITA
+            elif CARAMELO in sorteadas and JOIA in sorteadas and mapa in P_RETO:
+                certa = RETO
+            else:
+                certa = ESQUERDA
+
+    
+        if modulo == CASA:
+            if CARRO_ESTACIONADO in sorteadas and IDOSO in sorteadas and mapa in P_RETO:
+                certa = RETO
+            elif BUEIRO in sorteadas and ARVORE in sorteadas and mapa in P_DIREITA:
+                certa = DIREITA
+            else:
+                certa = ESQUERDA
+
+        if modulo == CAVALO:
+            if CARAMELO in sorteadas and PLACA_DE_PARE in sorteadas and mapa in P_ESQUERDA:
+                certa = ESQUERDA
+            elif CARRO_ESTACIONADO in sorteadas and ARVORE in sorteadas and mapa in P_RETO:
+                certa = RETO
+            else:
+                certa = DIREITA
+        '''
     
     return infos, certa
-            
-            
-
-
-'''
-class Obstaculo(pygame.sprite.Sprite):
-    def __init__(self, assets):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = assets[CACHORRO]
-        self.mask = pygame.mask.from_surface(self.image)
-        self.rect = self.image.get_rect()
-        self.rect.x = random.choice(0, 920)
-        self.rect.y = 0
-        if self.rect.x == 0:
-            self.speedx = random.randint(3, 5)
-        else:
-            self.speedx = random.randint(-5, -3)
-        self.speedy = random.randint(3, 10)
-    
-    def update(self):
-        self.rect.x += self.speedx
-        self.rect.y += self.speedy
-
-        if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
-            self.rect.x = random.randint(0, 920)
-            self.rect.y = 0
-            if self.rect.x == 0:
-                self.speedx = random.randint(3, 5)
-            else:
-                self.speedx = random.randint(-5, -3)
-            self.speedy = random.randint(3, 10)
-'''
