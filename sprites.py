@@ -63,24 +63,35 @@ def info(assets, modulo, dicas):
     infos = pygame.sprite.Group()
 
     posicoes = [CANTO_INFERIOR_E, CANTO_INFERIOR_D, CANTO_SUPERIOR]
+    
     p_sort = []
-
     qtd = random.randint(1, 3)
-    escolha = random.choice(dicas)
+   
 
+    escolha = random.choice(dicas)
     posicao = random.choice(posicoes)
+    
     p_sort.append(posicao)
+    sorteadas.append(escolha)
+    
+    
     dica = Informacao(assets, escolha, posicao)
     infos.add(dica)
-    
-    for _ in range(qtd - 1):
-        while escolha not in sorteadas:
-            escolha = random.choice(dicas)
-            sorteadas.append(escolha) 
-        while posicao not in p_sort:
-            posicao = random.choice(posicoes)
-            p_sort.append(posicao)
 
+    for _ in range(qtd - 1):
+        escolha = random.choice(dicas)
+        posicao = random.choice(posicoes)
+
+        while escolha in sorteadas:
+           
+            escolha = random.choice(dicas)
+        
+        while posicao in p_sort:
+            posicao = random.choice(posicoes)
+        
+        p_sort.append(posicao)
+        sorteadas.append(escolha)
+       
         dica = Informacao(assets, escolha, posicao)
         infos.add(dica)  
         

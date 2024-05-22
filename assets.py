@@ -147,7 +147,7 @@ def load_assets():
     assets[PLACA_DE_PARE] = pygame.transform.scale(assets[PLACA_DE_PARE], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[PLACA_RETO] = pygame.image.load(os.path.join(IMG_DIR, 'reto.png')).convert_alpha()
-    assets[PLACA_RETO] = pygame.transform.scale(assets[PLACA_DE_PARE], (MOTO_WIDTH, MOTO_HEIGHT))
+    assets[PLACA_RETO] = pygame.transform.scale(assets[PLACA_RETO], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[PLACA_PROIBIDO] = pygame.image.load(os.path.join(IMG_DIR, 'proibido.png')).convert_alpha()
     assets[PLACA_PROIBIDO] = pygame.transform.scale(assets[PLACA_PROIBIDO], (MOTO_WIDTH, MOTO_HEIGHT))
