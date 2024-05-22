@@ -52,7 +52,7 @@ colisao = 0
 
 acertos = 0
 total_acertos = 2
-max_erros = 1
+max_erros = 2
 erros = 0
 tempo = 0
 anterior = 'banana'
@@ -109,12 +109,15 @@ while state != FIM:
     if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and decisao: #and (state == RETA or state == RETA_E or state == RETA_D):
         if player.rect.bottom <= 0:
             decidiu = RETO
+            print(decidiu)
 
         elif player.rect.left > WIDTH:
             decidiu = DIREITA
+            print(decidiu)
 
         elif player.rect.right < 0:
             decidiu = ESQUERDA
+            print(decidiu)
 
         time.sleep(0.25)
         player.rect.centerx = WIDTH / 2
@@ -137,7 +140,9 @@ while state != FIM:
 
         if decidiu == certa:
             acertos += 1
+            print(acertos)
         else:
+            print(erros)
             tempo += 600
             erros += 1
 

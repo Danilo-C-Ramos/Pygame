@@ -37,7 +37,7 @@ G_DOIS_VD = 'g_dois_vd_img'
 G_DOIS_H = 'g_dois_h_img'
 G_TRES = 'g_tres_img'
 
-CARRO = 'carro_img'
+CARRO_ESTACIONADO = 'carro_estacionado_img'
 GRAMA = 'grama_img'
 ARVORE = 'arvore_img'
 BUEIRO = 'bueiro_img'
@@ -54,6 +54,8 @@ OUTDOOR_INSPER = 'outdoor_insper_img'
 OUTDOOR_ESPM = 'outdoor_espm_img'
 CASA = 'casa_img'
 PINGUIM = 'pinguim_img'
+IDOSO = 'idoso_img'
+CAVALO = 'cavalo_img'
 
 TELA_VITORIA = 'tela_vitoria_img'
 TELA_DERROTA = 'tela_derrota_img'
@@ -179,6 +181,15 @@ def load_assets():
 
     assets[CASA] = pygame.image.load(os.path.join(IMG_DIR, 'casa.png')).convert_alpha()
     assets[CASA] = pygame.transform.scale(assets[CASA], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[CARRO_ESTACIONADO] = pygame.image.load(os.path.join(IMG_DIR, 'carro.png')).convert_alpha()
+    assets[CARRO_ESTACIONADO] = pygame.transform.scale(assets[CARRO_ESTACIONADO], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[IDOSO] = pygame.image.load(os.path.join(IMG_DIR, 'idoso.png')).convert_alpha()
+    assets[IDOSO] = pygame.transform.scale(assets[IDOSO], (MOTO_WIDTH, MOTO_HEIGHT))
+
+    assets[CAVALO] = pygame.image.load(os.path.join(IMG_DIR, 'cavalo.png')).convert_alpha()
+    assets[CAVALO] = pygame.transform.scale(assets[CAVALO], (MOTO_WIDTH, MOTO_HEIGHT))
 
     assets[OUTDOOR_INSPER] = pygame.image.load(os.path.join(IMG_DIR, 'outdoor_insper.png')).convert_alpha()
     assets[OUTDOOR_INSPER] = pygame.transform.scale(assets[OUTDOOR_INSPER], (MOTO_WIDTH, MOTO_HEIGHT))
