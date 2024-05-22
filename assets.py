@@ -342,19 +342,77 @@ def timer(screen, assets, tempo):
     return 
 
 def end_screen(screen, assets, state):
-     
-    if state == FIM_V:
-        background = assets[ULTIMA_TELA]
-        nome = assets[INIT_FONT].render('VOCÊS VENCERAM!', True, RED)
+    font = pygame.font.SysFont(None, 40)
 
-        screen.blit(background, (0,0))
+    background = assets[ULTIMA_TELA] 
+    transparencia = pygame.Surface((WIDTH, HEIGHT))
+    transparencia.set_alpha(180)
+    transparencia.fill(BLACK)
 
-    if state == FIM_D:
-          background = assets[ULTIMA_TELA]
-          nome = assets[INIT_FONT].render('VOCÊS PERDERAM!', True, RED)
+    texto = font.render("Pressione Qualquer Tecla", True, WHITE)
+    texto_rect = texto.get_rect()
+    texto_rect.center = (WIDTH / 2, HEIGHT - 100)
 
-    state = FIM
-    return state
+
+    pulso = 3  # Velocidade da pulsação
+    max_alpha = 255  # Transparência máxima
+    min_alpha = 20 
+
+     #Efeito de piscar na tela:
+    tempo = pygame.time.get_ticks() / 1000.0
+    alpha = (max_alpha - min_alpha) / 2 * (math.sin(pulso * tempo) + 1) + min_alpha
+    texto.set_alpha(alpha)
+
+
+    
+
+    clock = pygame.time.Clock()
+    running = True
+    state = TELA_INICIO
+    while running:
+        # Ajusta a velocidade do jogo.
+        clock.tick(FPS)
+
+        # Processa os eventos (mouse, teclado, botão, etc).
+        for event in pygame.event.get():
+            # Verifica se foi fechado.
+            if event.type == pygame.QUIT:
+                state = QUIT
+                running = False
+
+            if event.type == pygame.KEYUP:
+                running = False
+                state = QUIT
+
+
+        
+        if state == FIM_V:       
+            venceu = assets[INIT_FONT].render('VOCÊS VENCERAM!', True, RED)
+            venceu_rect = venceu.get_rect()
+            venceu_rect.center = (WIDTH / 2, HEIGHT/2)
+
+            screen.blit(background, (0,0))
+            screen.blit(transparencia, (0,0))
+            screen.blit(venceu, venceu_rect.center)
+            screen.blit(texto, texto_rect)
+
+            # Depois de desenhar tudo, inverte o display.
+            pygame.display.flip()
+        
+        if state == FIM_D:
+            perdeu = assets[INIT_FONT].render('VOCÊS PERDERAM!', True, RED)
+            perdeu_rect = venceu.get_rect()
+            perdeu_rect.center = (WIDTH / 2, HEIGHT/2)
+
+            screen.blit(background, (0,0))
+            screen.blit(transparencia, (0,0))
+            screen.blit(perdeu, perdeu_rect.center)
+
+            screen.blit(texto, texto_rect)
+
+            # Depois de desenhar tudo, inverte o display.
+            pygame.display.flip()
+    return
      
 
 
