@@ -17,6 +17,9 @@ FPS = 60
 END_TIME = 300
 X_TIMER = 60
 Y_TIMER = 60
+CANTO_SUPERIOR = (WIDTH-125, 10)
+CANTO_INFERIOR_ESQ = (10, HEIGHT-10)
+
 
 # Define algumas variáveis com as cores básicas
 WHITE = (255, 255, 255)

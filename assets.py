@@ -79,6 +79,7 @@ def load_assets():
     assets[MOTO_ESQUERDA] = pygame.image.load(os.path.join(IMG_DIR, 'moto_esquerda.png')).convert_alpha()
     assets[MOTO_ESQUERDA] = pygame.transform.scale(assets[MOTO_ESQUERDA], (MOTO_WIDTH, MOTO_HEIGHT))
 
+    '''
     assets[MOTO_DIAGONAL_DIREITA] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_direita.png')).convert_alpha()
     assets[MOTO_DIAGONAL_DIREITA] = pygame.transform.scale(assets[MOTO_DIAGONAL_DIREITA], (MOTO_WIDTH, MOTO_HEIGHT))
 
@@ -90,6 +91,7 @@ def load_assets():
 
     assets[MOTO_DIAGONAL_ESQUERDA_BAIXO] = pygame.image.load(os.path.join(IMG_DIR, 'moto_diagonal_esquerda_baixo.png')).convert_alpha()
     assets[MOTO_DIAGONAL_ESQUERDA_BAIXO] = pygame.transform.scale(assets[MOTO_DIAGONAL_ESQUERDA_BAIXO], (MOTO_WIDTH, MOTO_HEIGHT))
+    '''
 
     assets[B_RETA] = pygame.image.load(os.path.join(IMG_DIR, "b_reta.png")).convert()
     assets[B_RETA] = pygame.transform.scale(assets[B_RETA], (WIDTH, HEIGHT))

@@ -195,7 +195,7 @@ while state != FIM:
 
     if modulo==POLICIA: # and state in retas:
         if state in retas:
-            window.blit(assets[POLICIA],(10,10))
+            window.blit(assets[POLICIA],(CANTO_SUPERIOR))
         #print('UÉ')
         
         ressorteia=False        
@@ -208,7 +208,7 @@ while state != FIM:
     elif modulo==OUTDOOR_INSPER:# and state in retas:
         #print('inxper')
         if state in retas:
-            window.blit(assets[OUTDOOR_INSPER],(10,10))
+            window.blit(assets[OUTDOOR_INSPER],(CANTO_SUPERIOR))
         ressorteia=False
         decisao=True
         if escolha==3: #basicamente 3
@@ -219,14 +219,14 @@ while state != FIM:
     elif modulo==OUTDOOR_ESPM: # and state in retas:
         #print('festa')
         if state in retas:
-            window.blit(assets[OUTDOOR_ESPM],(10,10))
+            window.blit(assets[OUTDOOR_ESPM],(CANTO_SUPERIOR))
         ressorteia=False
         decisao=True
         if escolha==3: #basicamente 3
             ressorteia=True
             decisao=False
 
-    if state not in [INIT, TUTORIAL, TELA_INICIO,TELA_OLHO]:
+    if state not in [INIT, TUTORIAL, TELA_INICIO, TELA_OLHO]:
         
         tempo += 1
         tempo_atual = END_TIME - (tempo / FPS)
