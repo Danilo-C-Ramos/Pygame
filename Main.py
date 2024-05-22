@@ -43,6 +43,9 @@ retas = [RETA, RETA, RETA, RETA, RETA, RETA_D, RETA_E]
 dicas= [HIDRANTE, RETO, PROIBIDO, ANIMAL, CARAMELO, ARVORE]
 modulos= [OUTDOOR_INSPER, OUTDOOR_ESPM, POLICIA]
 modulo= 0
+sla=0
+ressorteia= True
+decisao=False
 colisao = 0
 
 tempo = 0
@@ -94,9 +97,8 @@ while state != FIM:
         player.speedy = 0
         player.rect.bottom = HEIGHT
         
-    
-    if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and (state == RETA or state == RETA_E or state == RETA_D):
-        
+    #passa pra decisao
+    if (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and decisao: #and (state == RETA or state == RETA_E or state == RETA_D):
         
         time.sleep(0.25)
         player.rect.centerx = WIDTH / 2
@@ -110,12 +112,14 @@ while state != FIM:
         state = random.choice(states)
         print('TROCA')
         print(state)
-        modulo = random.choice(modulos)
+        
+        sla+=1
       
         g = Grama(assets, state)
         paredes.add(g)
 
-    elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and state != RETA:
+    #passa pra reta
+    elif (player.rect.bottom <= 0 or player.rect.left > WIDTH or player.rect.right < 0) and ressorteia: #and state != RETA:
         
         time.sleep(0.25)
         player.speedx= 0
@@ -127,10 +131,14 @@ while state != FIM:
         #state = states[state_i]
         
         state = random.choice(retas)
-        
+        sla=0
+
         g = Grama(assets, state)
         paredes.add(g)
-        
+
+        modulo = random.choice(modulos)
+        ressorteia=False
+        decisao=True
     player.update()
 
     
@@ -178,15 +186,38 @@ while state != FIM:
     all_sprites.draw(window)
 
 
-    if modulo==POLICIA and state in retas:
-        window.blit(assets[POLICIA],(10,10))
+    if modulo==POLICIA: # and state in retas:
+        if state in retas:
+            window.blit(assets[POLICIA],(10,10))
         #print('UÉ')
-    elif modulo==OUTDOOR_INSPER and state in retas:
+        
+        ressorteia=False        
+        decisao=True
+        if sla==2: #basicamente 3
+            ressorteia=True
+            decisao=False
+
+
+    elif modulo==OUTDOOR_INSPER:# and state in retas:
         #print('inxper')
-        window.blit(assets[OUTDOOR_INSPER],(10,10))
-    elif modulo==OUTDOOR_ESPM and state in retas:
+        if state in retas:
+            window.blit(assets[OUTDOOR_INSPER],(10,10))
+        ressorteia=False
+        decisao=True
+        if sla==3: #basicamente 3
+            ressorteia=True
+            decisao=False
+
+
+    elif modulo==OUTDOOR_ESPM: # and state in retas:
         #print('festa')
-        window.blit(assets[OUTDOOR_ESPM],(10,10))
+        if state in retas:
+            window.blit(assets[OUTDOOR_ESPM],(10,10))
+        ressorteia=False
+        decisao=True
+        if sla==3: #basicamente 3
+            ressorteia=True
+            decisao=False
 
     if state not in [INIT, TUTORIAL, TELA_INICIO,TELA_OLHO]:
         
