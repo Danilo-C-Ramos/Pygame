@@ -10,3 +10,5 @@ Mecânica:
 
 (Fotos do manual) 
 
+https://github.com/Danilo-C-Ramos/Pygame/assets/166611366/32d3cfab-b308-41ea-933a-9322c9856b82
+
