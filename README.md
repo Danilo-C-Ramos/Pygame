@@ -37,9 +37,10 @@ https://drive.google.com/file/d/11YRQ06RaKA_6Aujt6DySOune0PBX13l2/view?usp=shari
 https://github.com/Danilo-C-Ramos/Pygame/assets/166611366/32d3cfab-b308-41ea-933a-9322c9856b82
 
 
-Em geral o projeto se desenvolveu de forma muito flúida com os três integrantes do grupo participando de forma assídua. Alumas partes do desenvolvimento podem ser vistas nas fotos seguintes:
 
 # **Desenvolvimento do projeto**
+Em geral o projeto se desenvolveu de forma muito flúida com os três integrantes do grupo participando de forma assídua. Alumas partes do desenvolvimento podem ser vistas nas fotos seguintes:
+
 ![Figma print desenvolvimento pygame](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/7cf82d99-a669-4b13-9889-c1c74b686ab4)
 ![Aquario pygame 1](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/2f5b3107-ea04-4ffa-a3a4-765ff2aeb54d)
 ![Aquario pygame 2](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/dcaeee7c-728c-4693-85e9-f7c8acd0edca)
