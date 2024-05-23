@@ -7,9 +7,9 @@ Você e seu amigo entregador trabalham em uma pizzaria que tem a promoção: "Se
 
 # **BOA SORTE PARA NÃO SEREM DESPEDIDOS!!!**
 
-# **Como jogar:**
+# # **Como jogar:**
 
-# **Movimentação:** WASD
+**Movimentação:** WASD
 
 # **Mecânica:**
 
