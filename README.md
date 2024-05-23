@@ -19,6 +19,7 @@ Inpser Eats é um jogo cooperativo onde ambas as partes devem trabalhar para ven
 
 O jogador que controla o entregador de pizza, vê uma tela com as diferentes retas de vias únicas com uma informação "mãe" que definem qual parte do manual que ele esta se referindo. Em seguida a isso, o mesmo jogador vê caminhos/cruzamentos, e como informações visuais alguns objetos dispostos em lugares aleatórios da tela que servem para definir qual a direção que ele deve seguir a partir da comunicação de ambos os jogadores. Ao mesmo tempo, o jogador que possui o manual deve escutar e falar com seu companheiro para saber o que há na tela do mesmo, decidindo assim a partir do manual, qual direção o entregador deve seguir. Depois de um dado número de acertos, o jogador chega na casa de entrega e vencem o jogo. "Caso contrário", além dos 5 minutos que correm contra os jogadores, os erros também contam como elementos de dificuldade do jogo, fazendo com que cada erro considere um determinado tempo perdido, e que com 3 erros, os jogadores perdem o jogo.
 
+# **Imagens do Manual**
 ![Capa Manual Pygame](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/5a5d8765-e77e-4ca3-aa8f-fd993049d748)
 ![Dicas Manual Pygame](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/ba2f2a32-46f1-47a9-9648-29b56a6401d9)
 ![Seção Pygame](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/dfad4cea-212d-42f1-9109-c938540f39d2)
