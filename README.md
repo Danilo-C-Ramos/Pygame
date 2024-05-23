@@ -5,7 +5,7 @@
 
 Você e seu amigo entregador trabalham em uma pizzaria que tem a promoção: "Se o pedido demorar mais de 30 minutos, o pedido sai de graça!". Esta promoção sempre funcionou de forma sublime... até o momento. O pedido atrasou muito para sair e agora seu companheiro tem 5 minutos para entregar o pedido! Porém existe mais um problema, seu amigo esqueceu o GPS que pode levá-lo até a casa para a entrega. Nessa situação, você vê que seu amigo estava com um rádio, e percebe que a única forma de concluir essa missão com êxito, seria comunicando-se com ele através do rádio para guiá-lo até o destino correto! 
 
-# BOA SORTE PARA NÃO SEREM DESPEDIDOS!!!
+BOA SORTE PARA NÃO SEREM DESPEDIDOS!!!
 
 # **Como jogar:**
 
@@ -32,16 +32,20 @@ O jogador que controla o entregador de pizza, vê uma tela com as diferentes ret
 # **Música utilizada no jogo:**
 https://drive.google.com/file/d/11YRQ06RaKA_6Aujt6DySOune0PBX13l2/view?usp=sharing
 
+# **Vídeo de Explicação**
 https://github.com/Danilo-C-Ramos/Pygame/assets/166611366/32d3cfab-b308-41ea-933a-9322c9856b82
+
 
 Em geral o projeto se desenvolveu de forma muito flúida com os três integrantes do grupo participando de forma assídua. Alumas partes do desenvolvimento podem ser vistas nas fotos seguintes:
 
-# **Imagens de Desenvolvimento**
+# **Desenvolvimento do projeto**
 ![Figma print desenvolvimento pygame](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/7cf82d99-a669-4b13-9889-c1c74b686ab4)
 ![Aquario pygame 1](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/2f5b3107-ea04-4ffa-a3a4-765ff2aeb54d)
 ![Aquario pygame 2](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/dcaeee7c-728c-4693-85e9-f7c8acd0edca)
 ![Aquario pygame 3](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/23494525-7b98-497d-b91c-64c5d401d4cc)
 
+
+# Obrigado!
 
 ![Pizzada pygame](https://github.com/Danilo-C-Ramos/Pygame/assets/166611688/f6dd8b9f-cdb6-4c51-9144-ae38210eceaf)
 
