@@ -3,6 +3,7 @@ import pygame
 from config import *
 from assets import *
 
+#classe para criar a moto do jogador
 class Moto(pygame.sprite.Sprite):
     def __init__(self, assets):
         pygame.sprite.Sprite.__init__(self)
@@ -20,7 +21,7 @@ class Moto(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
 
-        
+#classe para criar as paredes/gramas da tela em questão 
 class Grama(pygame.sprite.Sprite):
     def __init__(self, assets, state):
         pygame.sprite.Sprite.__init__(self)
@@ -46,6 +47,7 @@ class Grama(pygame.sprite.Sprite):
         self.rect.x = 0
         self.rect.y = 0
 
+#classe para criar um sprite das informações da tela
 class Informacao(pygame.sprite.Sprite):
     def __init__(self, assets, info, posicao):
         pygame.sprite.Sprite.__init__(self)
@@ -55,10 +57,10 @@ class Informacao(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = posicao
 
-class Entrega(pygame.sprite.Sprite):
-    def __init__(self, assets, info, posicao):
-         
-        self.image = assets[info]
-        self.mask = pygame.mask.from_surface(self.image)
-        self.rect = self.image.get_rect()
-        self.rect.center = posicao
+
+#class Entrega(pygame.sprite.Sprite):
+#    def __init__(self, assets, info, posicao):
+#        self.image = assets[info]
+#        self.mask = pygame.mask.from_surface(self.image)
+#        self.rect = self.image.get_rect()
+#        self.rect.center = posicao

@@ -12,6 +12,7 @@ pygame.mixer.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Motinha')
 
+#loop principal do jogo
 game_screen(window)
 
 # ===== Finalização =====
